@@ -104,5 +104,3 @@ Students in all GSAPP courses are expected to uphold the highest levels of acade
 > In-class presentations of portfolio work in progress.  
 >
 > Portfolio due on Tuesday following.  
-
-![kroll model](./assets/lucien-kroll_meme.jpg)
