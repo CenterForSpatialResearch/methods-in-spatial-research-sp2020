@@ -1,84 +1,93 @@
 ---
-- Topics covered:
-  - working with spatial data 'locally' (in a desktop environment) with QGIS
-  - start and save a map project
-  - add vector and raster spatial data to the map project from different sources
-    - your hard drive
-    - over the network
-  - access the Attribute Table of a vector layer
-  - change the symbology of a vector layer using qualitative attributes
-- Changes needed:
-  - move section on changing projections to Tutorial 2
+title: Organizing and Viewing Spatial Data in QGIS
 ---
-# Organizing and Viewing Spatial Data in QGIS
 
 ## Objectives
 
-This tutorial is meant to introduce QGIS as a tool for working with spatial data on your own computer. We'll review the interface and some of the program's options. Next you'll learn to create a project and add data from a variety of sources. Finally, we'll look at how to view attributes for the data you added, and control the appearance of data on the map.
+This tutorial is meant to introduce QGIS as a tool for working with spatial data on your own computer. First we'll review the interface. Next you'll learn to create a project and add data from a variety of sources. Finally, we'll go over how to view **features** and **attributes** of the data you added, and control the appearance of data on the map.
 
 ## Setup
 
 Before starting, you'll need to download and install QGIS. While the tutorials use version 3.4, you're welcome to experiment with any other 3.* version. Just be aware that your interface may not look exactly the same as the tutorial screenshots.
 
-Next you'll need to set up a project folder and download the necessary data for the tutorials. Students are strongly encouraged to create a single project folder for the entire class and keep data for the various tutorials saved in the same place. Download the GitHub repository for this course from [this link](link-to-repo-zip). Save and decompress the downloaded folder to your preferred working location. The Class_Data folder will then have most of the datasets needed for tutorials. Additional datasets required for the tutorials (those larger than certain upload limits allow) can be found in [this public google drive folder](https://drive.google.com/drive/u/1/folders/1yJlnKJy1WxAXuox4nmBxrs6xlwPK1HLb), including the georectified scanned map image included later in this tutorial. Download, save, and decompress this folder to the same directory as the GitHub repository you saved.
+Since this series of tutorials is set up as a set of exercises around a common collection of data and culminating in a final project, you'll want to set up a **project folder** before getting started. All members of the Columbia community have access to unlimited storage on Google Drive, if you don't already do so, we recommend you use make use of this resource to back up your project folder through the [Backup and Sync](https://www.google.com/drive/download/backup-and-sync/) tool provided by Google.
 
-## First Steps in QGIS
+![create instance of folder](./assets/gdrive_sync-instance.png)
 
-**Launch** QGIS. Your new blank map project will look like this:
+Once your project folder is set up and syncing, go to the [Methods in Spatial Research](https://drive.google.com/drive/folders/1IVjKSGSpNVmGB6r6zkiWuKoeryMfxZow?usp=sharing) folder in your browser. Click the folder labeled "Shared Data" to select it, and press `Shift + Z`. In the pop-up window, navigate to your project folder and then click "Add". This will create an instance of the shared data folder for the class within your project that will automatically keep itself updated if the data should change. In your project folder, also create a folder labeled "My_Data". This is where you'll store datasets you create yourself in Weeks 3 and 4.
+
+## The QGIS Interface
 
 ![qgis blank screen on first open](./assets/qgis_firstopen.png)
 
-Begin to familiarize yourself with the interface. Yours may not exactly resemble the layout shown above. For instance, most toolbars and panels are movable, allowing you to set up your workspace as you like. You can always add or remove these elements of the workspace by clicking through "View > Panels or Toolbars" (from the main menu bar). If you ever need to reset the interface to its default settings, you can go to "Preferences > System > Settings > Reset user interface to default settings".
+When you first launch QGIS, it opens a new blank map project as illustrated in the screenshot above. The following list outlines the most important interface elements:
 
-### Interface Elements
+1. The **Menu Bar** is a standard menu bar that gives you access to most of the software's functionality. On a Mac this will be at the top of your screen; on Windows it's attached to the top of the QGIS window itself. Note that many of the items you can access here can also be accessed through the icons on the toolbars below.
+2. **Toolbars** give access to many commonly used tools and features in QGIS, grouped by function. To open additional toolbars (or reopen them if they are accidentally closed), right-click in the space around an existing toolbar and select one from the list that appears.
+3. The **Map View** is where your data will appear, according to the settings defined in each layer.
+4. The **Layer Panel** shows all of the data layers you have added to your current map project. The order of the layers in this menu determines the overlapping order in which the layers appear in the map view (higher items on the list appear on top). The check boxes next to each layer name allows you to turn the visibility of layers on and off. You can also access properties for that layer and perform operations on it by right-clicking the layer name. This is sometimes also referred to as the Map Legend or the Table of Contents.
+5. The **Browser Panel** contains a list of data sources on your computer's file system (represented by folder icons) and various network sources (each has a different blue-hued icon). Folders and other sources can be expanded by clicking the triangles to the left of each icon. Anything here that can be read by QGIS as a layer can be added to the project by dragging it to the Layer Panel or Map View.
+6. Finally, the **Status Bar** shows the position of your cursor in the map view, the current scale and rotation of the map view, and the project’s coordinate system. When working with large datasets, you can also pause/resume map drawing with the "Render" checkbox.
 
-1. **The Menu Bar:** This is a standard menu bar that gives you access to many elements of the software. Note that many of the items you can access here can also be accessed through the icons on the toolbars below.
-2. **Toolbar:** Gives access to many commonly used tools and features in QGIS. The individual toolbar segments can be moved – hover over the edge of the toolbar until a + icon appears then click and drag the tool bar. Note the location and configuration of the elements of the toolbar on your screen might not match those in this tutorial. Please feel free to move them to which ever configuration is easiest for you to work with.
-    - Note if you ever lose one element of the tool bar you can right click (control + click on Mac) in any empty zone of the toolbar area and a full list of available toolbar elements will appear.
-3. **The Map View:** This is where your maps will appear, all layers activated in the layer menu (see item 4) will be visible here. 
-4. **Layer menu:** This shows all of the data layers you have added to your current map project. The order of the layers in this menu determines the order in which the layers appear in the map view. The check boxes next to each layer name allows you to turn the visibility of layers on and off. By clicking a specific layer you can access properties for that layer and perform operations on that layer. This is sometimes also referred to as the Map Legend or the Table of Contents. It is not fixed, you can drag the layer menu to occupy a different space on your screen or to take up the full left hand panel.  
-5. **Browser:** the browser allows you to access your computer’s file system. You can use this to drag files onto your map project.  Like the layer menu it can be moved to occupy a different space.
-6. **Status Bar:** the status bar shows the position of your cursor in the map view, the current scale and rotation of the map view, and the project’s coordinate system.
+Hovering over any button in the interface will display a **tooltip** with a brief description. More details can be found in the [QGIS Documentation](https://docs.qgis.org/3.4/en/docs/user_manual/introduction/qgis_gui.html).
 
-* If you hover over any button in the interface a brief description of that button will appear. This is called a **tooltip**. In QGIS, if you want a description of a specific element of the interface, select the "What's This?" button circled in blue and click anywhere in the interface for a brief description of that element.
+Once you're familiar with the standard interface layout, you may want to customize your workspace. Toolbars and Panels can be turned on or off by right-clicking blank space next to existing toolbars (see above) or through the menu bar under View > Toolbars or View > Panels. They can also be repositioned by clicking and dragging anywhere in the panel frame or from the handle to the left of each toolbar. Each element can be either docked (snappable areas will be highlighted in blue as you drag around the window) or undocked/freely positioned. If you ever need to reset the interface to its default settings, you can do so under Preferences > System > Settings > Reset user interface to default settings.
 
-**Save** your (currently empty) map project in your working folder by clicking through `Project > Save As...` on the main menu. Name the project file Tutorial0_GettingStarted. (The .qgz extension for QGIS project files will be added to your file name automatically.)
+## Creating and Accessing Projects
 
-If your interface defaults to a list of Recent Projects, double-click the newly created project file name to access and open it.
+Before beginning a new project, **Save** your (empty) tutorial file in the project folder you set up earlier. Like most programs, QGIS lets you save either with Ctrl-S, a toolbar button (look for the blue floppy disk) or through the Menu Bar (Project > Save). Name the file `Tutorial1_GettingStarted`. The `.qgz` extension for QGIS files will be added to your filename automatically.
 
-You should notice your project added to the Brower Panel, in a folder collection named Project Home.
+![qgis recent projects list](./assets/qgis_recentprojects.png)
 
-![project home](./assets/qgis_projecthome.png)
+Quit and relaunch QGIS. This time, instead of a new empty project you should see a list of Recent Projects in the Map View. Double-click to reopen your tutorial file. Notice that your project folder has now been added to to the Brower Panel, shown with a green folder icon as "Project Home". If you expand the folder, you should see your "My_Data" and "Shared_Data" folders along with your tutorial file.
+
+![qgis project home folder](./assets/qgis_projecthome.png)
 
 ## Adding Data
 
-Next we'll add some data to our project.
+Now we're ready to add some data to our project.
 
-QGIS provides an environment for viewing and manipulating spatial data but the program itself does *not handle data storage*.
+QGIS provides powerful tools for manipulating and rendering spatial data but **the program itself does not handle data storage**. Instead, when you add data to a map in QGIS, it creates a new **layer** containing a link to wherever the data is actually stored. Every time the program needs to draw, look up, or write data associated with that layer, it accesses it through the link. This has many benefits:
 
-layers stored elsewhere are assembled within a **map project** where we can visualize, compare, manipulate, and analyze them together. Within the map project, we can also compose and export a map. Storing your data outside of the project allows you to include a particular data layer in several map projects without having to produce multiple copies of it, but it carries two important implications:
+- You can produce multiple maps using the same data
+- The data can be updated or revised independently of the map
+- Using a network, multiple mapmakers can share a pool of data resources
 
-  1. Maintaining clear file organization is important. The data layers associated with your map projects are **linked** to each project from their stored location. If those files are moved or reorganized, then their links will break and you will need to re-establish their linkage.
-  2. GIS software is continuously reading the path to each data layer, accessing the information stored within your datasets. To enable this reading smoothly, we highly recommend a policy of **no spaces in your path or file names**.
+At the same time, this approach also requires the mapmaker to think strategically (or even spatially) about where your data is coming from.
 
-Like other CAD and graphics software, elements of our map are referred to as **layers** in QGIS. Besides letting us separate and name different groups of information within a project, layers in GIS also correspond to individual data sources.
+When creating your own data and storing it locally, extra care is needed to make sure this linked approach is successful. First, maintaining **clear and consistent file organization is extremely important**. Once a link is established, moving, reorganizing or renaming files will require you to re-link each one. Second, **spaces or unusual characters within the file path can cause errors** in some spatial analysis software. Because of this it is recommended that you limit all file and folder names to letters, digits and underscores.
 
-We will add a few different data layers to our map project, some which we will ultimately use in our new map and another for comparison, as a means of learning to navigate the interface.  
+In the next few sections we'll look at a couple of different ways to add data to your map.
+
+### Raster Tiles (XYZ, WMTS and others)
+
+When starting a new mapping project, getting a sense of context and orientation is often important. A set of **map tiles**, made available through a web server, can provide coverage of the earth's entire surface at varying levels of detail required by different zoom levels. This technique is behind most online map services but can also be used within QGIS alongside other forms of data. Here we'll make a connection to [Stamen Design](http://maps.stamen.com/#toner/)'s *Toner* tileset (generated from [OpenStreetMap](https://en.wikipedia.org/wiki/OpenStreetMap) Data) and add it to our map.
+
+In the Browser Panel, right-click "XYZ Tiles" and select "New Connection". Give your new connection a name like "Stamen Toner", and paste the following URL into the URL field:
+
+`http://a.tile.stamen.com/toner/{z}/{x}/{y}.png`
+
+Now you should see an entry for Stamen Toner appear under XYZ Tiles when expanded. Click and drag this service into your Layers Panel or Map View and you'll see something like the image below. Notice how the map redraws at specific zoom levels, revealing or removing detail.
+
+![qgis view with data from tileserver](./assets/qgis_tilelayer.png)
+
+The data we get from the tileserver is **raster** data. This means the area shown in our map is continuously covered with an even grid of pixel-like **cells**, each one enclosing a discrete unit of geographic space. Each raster cell in the Toner tile set is colored either black or white. Try changing the zoom level of the map using the scroll wheel on your mouse or using the tools in the Zoom toolbar. As we jump between zoom levels, the tile server sends down new raster tiles with varying spatial resolutions; when we zoom in, each cell represents a smaller and smaller portion of the territory.
+
+![raster tileserver zoom levels](./assets/raster_tileserverzoom.png)
 
 ### Raster Layers from TIFF
-Lastly, **add** a new layer to your map project by, once again, accessing the Data Source Manager dialogue box. (You can click the Add Raster button from the toolbar or simply navigate to the Raster panel if you chose a different option.)
 
-Just as when we added the original vector polygon layer, **navigate** to your data using the browse (`...`) button. **Add** the GeoTIFF file called DensityRec.tif located in the Tutorial0_ClassData\raster\ folder. (This dataset is provided in the auxiliary download for large files. You can find it directly [here](https://drive.google.com/drive/u/1/folders/1yJlnKJy1WxAXuox4nmBxrs6xlwPK1HLb). The cropped and georectified map should align fairly well with the national boundaries layer in your map project.
+Another way to add raster data is from a single .tif file stored locally. We'll use a scanned map that was **georectified** through the New York Public Library's Map Warper program. We'll talk more about what that means in Week 4, for now it's important to know that another mapmaker has assigned a specific geographic location and other properties to the scanned image to ensure conformity with the digital model of geographic space used inside the QGIS environment.
 
-To finish, **arrange** your data layers (click and drag in the Layers panel), placing the current national boundaries over the 1958 map, and **change the national boundary symbols** such that they are transparent.
+To add the file to your map, navigate to `Project Home/Shared_Data/raster` in the Browser Panel and drag `nypl_map-warper-harlem-river.tif` into your layers panel. Notice that the icon to the left of the file is the same as our tile service layer, indicating both are raster.
 
-![desc](./assets/WithRaster.png)
+Right-click the newly added layer and select "Zoom to Layer". This will show the TIFF file superimposed on our base map.
 
-### Raster Tile Layers from WTMS
+![qgis view with data from tiff file](./assets/qgis_tiffrasterlayer.png)
 
-When 
+Notice that when we change zoom levels this layer stays the same. Each cell in the raster grid corresponds to the same geographic region (about 1 square foot) regardless of zoom level.
 
-use https://maps.nyc.gov/tiles/
+![raster tileserver zoom levels](./assets/raster_staticlayerzoom.png)
 
 ### Vector Layers from Shapefiles
 
@@ -126,13 +135,6 @@ The layer name appears listed in the Layers Panel, along with a swatch of its sy
 ### Vector Layers from GeoJSON
 
 
-
-### Vector Layers from 
-
-use http://gisrevprxy.seattle.gov/arcgis/rest/services/DPR_EXT/ParksExternalWebsite/MapServer
-
-http://gisrevprxy.seattle.gov/arcgis/rest/services/DPR_EXT/ParksExternalWebsite/MapServer
-
 Once you're done adding data, it's probably a good idea to save your project.
 
 ## Viewing Attributes
@@ -169,13 +171,14 @@ While exploring, you can zoom and pan across the map's data frame with the tools
 
 **Deselect** any selected features. Return your map to its full extents by **clicking the Zoom Full button**. **Save** your QGIS map project.
 
+## Changing the Appearance of Data (Symbology)
 
-### Intro to Symbology
 We will discuss map *symbology* and cartography more completely later in the workshop, but for now, we will learn to make a few simple changes to the appearance of the national boundaries layer. First, we will change the default *symbol* used to visualize the data layer. Second, we will assign colors to each polygon based on a qualitative field in its attribute table (in this case, the subregion designation).
 
 There are a few short-cut options in the QGIS interface for quickly changing a layer's symbols. We will walk through the Layer Properties dialogue box, which includes these and many more options and functions per layer.
 
 #### Accessing Symbology Properties
+
 To access the Layer Properties dialogue box, **right-click** on the layer name (`admin_0_countries`) in the Layers Panel and choose **Properties**.
 
 From the lelf-hand menu, choose the **Symbology** menu. You should notice that the layer is currently symbolized with a "Single Symbol" system and a "simple fill." **Highlight** "Simple Fill" from the panel at the top of the dialogue box to access the symbol options.
@@ -208,14 +211,6 @@ The symbology options will change, and from here we can quickly assign separate 
 When you are satisfied with your categorical symbology strategy, **click OK** to exit the Layer Properties dialogue box.
 
 **Save** your QGIS project.
-
-
-### Finishing Up
-Thus far, we have been interacting with a Mollweide map projection. Before finishing this tutorial, we will reproject the map data frame to match the original projection of a scanned, *georectified* global population map.
-
-The georectified map (below) we will add to our project is from the [David Rumsey Historical Map Collection] (https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~225244~5505992;JSESSIONID=fa751117-cbd7-452b-b867-46dac48ea52f#). The map is drawn in the Winkel Tripel projection, which is now commonly used in global atlases for its minimal distortion in distance, area, and direction.
-
-![desc](./assets/Bartholomew1958.png)
 
 ---
 
