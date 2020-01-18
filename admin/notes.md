@@ -2,21 +2,34 @@
 
 ## Admin
 
+- [ ] transfer repo to CSR organization
 - [ ] Write remaining tutorials
 - [ ] Create participation/attendance sheets
-- [ ] Obtain copy of the referenced Honor Code and Plagarism Policy
-- [ ] set up print build script to pull reading pdfs and put them in build folder 
+- [ ] set up print build script to pull reading pdfs and put them in build folder
+- supplies - make sure to get the right dongle to connect to 200 buell projector, investigate blackboard situation
 
-## Syllabus (Document)
+## To Discuss
 
+- setup: easier/better to transfer class repository to CSR git ownership and contribute
 - [ ] Clarify intent around teaching both open-source desktop GIS and web maps
   - Secondary title, "Mapping in Public"?
   - Highlight this in tutorials where possible 
 - Possible to work in something on internet infrastructure and how the internet itself is a spatial technology
-- Terminology: spatial data vs GIS?
-- Terminology: participatory sensing?
+- Terminology: spatial data vs GIS? 
+- Terminology: participatory sensing? 
+- Clarify intent around tutorial/class sequence. Discussion of concepts to take place prior to tutorial or after?
+- audience
+  - anticipate non-gsapp students. anthro, history, latin & etc phd, journalism, general studies
+  - Computing infrastructure, non-gsapp students have qgis access? GSAPP installed version? Assumptions about personal computer availability?
+  - [ ] Add syllabus section on computing resources & expectations. lehman/empirical reasoning barnard (undergrad) for both help and computers. strongly encouraged to have own computer
+  - 
+- final assignment gets announced in 2nd week, students choose either/both of data gathering assignmetns to use in map final deliverable is both maps plus written reflection 3pg
+- make sure theres a spatial join!
+
+## Syllabus (Document)
+
+- Styleguide: use md code snippets only for actual code. Important terms should be in **bold**, interface elements or messages should be quoted.
 - [ ] Fix typos
-- [ ] Add section on computing resources & expectations
 - [ ] Proofread syllabus for clarity
 - [ ] how to remove "figure" from captions, see [here](https://tex.stackexchange.com/questions/82456/how-to-remove-figure-caption-prefix-figure-in-beamer)
 - [ ] finish tweaking csl file so syllabus bibliography renders correctly
@@ -30,15 +43,36 @@
 #### Week 1: An introduction to critical GIS concepts and techniques
 
 - Date: 1/24
+- Reading
+  - Harley: Deconstructing the Map
+  - Kurgan: Introduction & Mapping Considered
+- Presentation
+  - Files and data, terms and concepts
+    - **directory**
+    - **file**
+    - **file encoding**
+    - **file type**
+      - shapefiles
+      - geojson
+    - **database**
+      - network
+      - esri "file geodatabase" (spatialite, sqlite)
+    - **data types**
+      - **raster**
+      - **vector**
+        - **point**
+        - **poly(line)**
+        - **polygon**
+        - surfaces, hatches
+        - 3d
+  - Data communities
+    - Discuss who shares/uses data and how
+    - File-based systems
+    - [Groupware](https://en.wikipedia.org/wiki/Collaborative_software#Groupware) revolution
+    - Downside: who maintains the commons? Currently mostly corporate subscription-based or commercial platforms
+  - Talk about projections for next tutorial
 - Tutorial 1
-  - Format: (in class demo + students complete at home?
-  - Topics covered:
-    - start and save a map project
-    - add vector- and raster-based spatial data to the map project
-    - access the Attribute Table of a vector layer
-    - change the symbology of a vector layer using qualitative attributes
-  - Changes needed:
-    - remove section on changing projections
+  - Deadline: in class demo, students to complete at home prior to next class.
 
 #### Week 2: Working with cartographic projections
 
@@ -95,8 +129,6 @@
   - Changes needed:
     - Rewrite/reorganize two tutorials from summer workshop
 
-#### Final Portfolio
+#### Final Project
 
 - Deadline: 3/3
-- Option A: revise all tutorials to make them lead to real creative final deliverables?
-- Option B: draft final assignment to make it be something where students need to adapt an earlier tutorial with new data or something?
