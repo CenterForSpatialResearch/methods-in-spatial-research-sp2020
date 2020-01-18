@@ -46,6 +46,17 @@
 - Reading
   - Harley: Deconstructing the Map
   - Kurgan: Introduction & Mapping Considered
+- Tutorial
+  - Topics covered:
+    - working with spatial data 'locally' (in a desktop environment) with QGIS
+    - start and save a map project
+    - add vector and raster spatial data to the map project from different sources
+      - your hard drive
+      - over the network
+    - access the Attribute Table of a vector layer
+    - change the symbology of a vector layer using qualitative attributes
+  - Changes needed:
+    - move section on changing projections to Tutorial 2
 - Presentation
   - Files and data, terms and concepts
     - **directory**
