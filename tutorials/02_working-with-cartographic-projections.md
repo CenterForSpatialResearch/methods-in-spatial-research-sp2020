@@ -2,6 +2,15 @@
 
 ## Projections in QGIS (From original Tutorial 0)
 
+
+### Finishing Up
+Thus far, we have been interacting with a Mollweide map projection. Before finishing this tutorial, we will reproject the map data frame to match the original projection of a scanned, *georectified* global population map.
+
+The georectified map (below) we will add to our project is from the [David Rumsey Historical Map Collection] (https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~225244~5505992;JSESSIONID=fa751117-cbd7-452b-b867-46dac48ea52f#). The map is drawn in the Winkel Tripel projection, which is now commonly used in global atlases for its minimal distortion in distance, area, and direction.
+
+![desc](./assets/Bartholomew1958.png)
+
+
 #### Assigning a new projection
 When assigning a new projection to the data frame, **note** that we are not assigning a new projection or coordinate reference system to our original data layer. Rather, we are using the coordinate reference information contained within each spatial dataset to re-positioning those coordinates according to the rules of a different projection.
 

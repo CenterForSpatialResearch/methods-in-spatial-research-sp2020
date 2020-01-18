@@ -1,9 +1,11 @@
 ---
-look at https://github.com/CenterForSpatialResearch/MappingForTheUrbanHumanities_2017/blob/master/Tutorials/07_Webmaps.md
-
+title: Tutorial 6
 ---
-# Tutorial 6
+todo: look at https://github.com/CenterForSpatialResearch/MappingForTheUrbanHumanities_2017/blob/master/Tutorials/07_Webmaps.md
 
+
+# Tutorial 6
+ 
 
 # Tutorial 8: Web Mapping 1
 
