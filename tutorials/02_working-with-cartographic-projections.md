@@ -1,5 +1,30 @@
 # Tutorial 2
 
+## Projections in QGIS (From original Tutorial 0)
+
+#### Assigning a new projection
+When assigning a new projection to the data frame, **note** that we are not assigning a new projection or coordinate reference system to our original data layer. Rather, we are using the coordinate reference information contained within each spatial dataset to re-positioning those coordinates according to the rules of a different projection.
+
+To change the the Coordinate Reference System of the map project, access the Project Properties dialogue box by clicking the Coordinate Reference System button on the bottom-right of the interface (in the screenshot below) or by clicking through Project > Properties from the Main Menu.
+
+![desc](./assets/CRSbutton.png)
+
+In the CRS panel of the Project Properties dialogue box, **notice** the list of pre-installed coordinate systems. (The list is long, detailed, and varied. Almost all projections and datums can be quickly searched online for more information.)
+
+Because we know the projection we need, we can use the Filter option to search for it. In the Filter text box at the top of the dialogue, **type "Winkel"** to isolate the reference systems that include Oswald Winkel's name (highlighted in blue in the screenshot below).
+
+![desc](./assets/Winkel.png)
+
+In the resulting list of Coordinate Reference Systems, **highlight** the World_Winkel_Tripel_NGS option under Winkel Tripel (red box).
+
+Notice (green box) that the coordinate reference system information includes more than the projection itself, but its origin,the datum to which it is applied (WGS84), and its linear unit (meters).
+
+**Click OK** to change the projection of the map project's data frame. You should notice a quick transformation.
+
+**Save** your map project.
+
+---
+
 ## Mapping a Table
 
 #### Premise & Objectives
@@ -186,8 +211,8 @@ Explore the other symbology and rendering options. When you are ready to save yo
 
 **Save** your map project.
 
-
 ### Creating a Map Layout
+
 When you are satisfied with your symbology choices and are ready to export a map document from QGIS, you will need to create a New Print Layout. To do this, either **click** the New Print Layout button on the Project Toolbar or **click through** Project > New Print Layout on the main menu.
 
 When prompted, you can choose to title your layout or let QGIS assign a default title for you.

@@ -29,6 +29,8 @@ Through completion of the course, participants will:
 30% weekly mapping tutorials  
 25% mapping portfolio and presentation, revision of two selected mapping tutorials and two selected reading responses or map critiques into an online portfolio of work and 10-minute in-class presentation on the portfolio in progress.
 
+Starting in week 3, you should be thinking about a theme or topic for a final project. We'll have two tutorials on making spatial datasets, during which you'll be able to choose a subject and produce two sets of data. Think about how they might interact with each other through juxtaposition or superimposition. Week 5 will focus on cartographic design principles and we'll consider the various design choices you'll face in telling a story about your two datasets. Finally, in week 6, we'll look at how to publish your map online and make it interactive. This map will be the final project.
+
 ## Community and Accessibility
 
 This is a discussion and collaborative-critique based course. All students and the instructor must be respectful of others in the classroom. If you ever feel that the classroom environment is discouraging your participation or is problematic in anyway please contact the instructor.
@@ -37,7 +39,7 @@ GSAPP is committed to full inclusion of all students. Students needing any form 
 
 ## Computing Resources
 
-The course assumes all participants have access to a personal computer. You will need to download and install both [QGIS](https://qgis.org/en/site/forusers/download.html) and [VS Code](https://code.visualstudio.com) prior to completing the first tutorial. Please contact the instructor directly with any computing issues, rather than CUIT or GSAPP IT to ensure a prompt and informed response.
+The course assumes all participants have access to a personal computer. You will need to download and install both [QGIS](https://qgis.org/en/site/forusers/download.html) and [VS Code](https://code.visualstudio.com) prior to completing the first tutorial. Please contact the instructor directly with any computing issues.
 
 ## Academic Integrity
 
@@ -53,7 +55,7 @@ Students in all GSAPP courses are expected to uphold the highest levels of acade
 >
 > Reading:
 >  
-> > @harleyDeconstructingMap1992  
+> > @harleyDeconstructingMap1992
 > >  
 > > @kurganIntroductionMappingConsidered2013  
 
@@ -92,6 +94,7 @@ Students in all GSAPP courses are expected to uphold the highest levels of acade
 > Reading:
 >  
 > > @monmonierHowLieMaps2018 (Selections)  
+> @desiminiCartographicGroundsProjecting2016 (Selections)  
 
 #### Week 6: Producing public work through interactive maps on the web
 
@@ -104,5 +107,3 @@ Students in all GSAPP courses are expected to uphold the highest levels of acade
 > In-class presentations of portfolio work in progress.  
 >
 > Portfolio due on Tuesday following.  
-
-![kroll model](./assets/lucien-kroll_meme.jpg)
