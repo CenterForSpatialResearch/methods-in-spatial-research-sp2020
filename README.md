@@ -51,59 +51,57 @@ Students in all GSAPP courses are expected to uphold the highest levels of acade
 
 #### Week 1: An introduction to critical GIS concepts and techniques
 
-> Tutorial 1: in class  
->
-> Reading:
->  
-> > @harleyDeconstructingMap1992
-> >  
-> > @kurganIntroductionMappingConsidered2013  
+[Tutorial 1 (In-Class)](./tutorials/01_organizing-viewing-spatial-data-in-qgis)
+
+Reading:
+
+Harley, J. B. “Deconstructing the Map.” Passages, 1992.
+
+Kurgan, Laura. “Mapping Considered as a Problem of Theory and Practice" & "Representation and the Necessity of Interpretation.” In Close up at a Distance: Mapping, Technology, and Politics. New York: Zone Books, 2013.
 
 #### Week 2: Working with cartographic projections
 
-> Tutorial 2: due prior to the start of class  
->  
-> Reading:
->  
-> > @cornerAgencyMapping2014
+Due: [Tutorial 2](./tutorials/)
+
+Reading:
+
+Corner, James. “The Agency of Mapping.” In Landscape Imagination: Collected Essays of James Corner 1990-2010. New York: Princeton Architectural Press, 2014.
 
 ### Making Spatial Datasets
 
 #### Week 3: Making spatial datasets through observation and sensing
 
-> Tutorial 3: due prior to the start of class  
->  
-> Reading:
->  
-> > @morrisEmbodiedMappingLocative2015
+Due: [Tutorial 3]()
+
+Reading:
+
+Morris, Dee, and Stephen Voyce. “Embodied Mapping, Locative Mapping, and New Media Poetics.” Jacket2, March 20, 2015. ([link](https://jacket2.org/commentary/embodied-mapping-locative-mapping-and-new-media-poetics))
 
 #### Week 4: Making spatial datasets through archival research
 
-> Tutorial 4: due prior to the start of class  
->  
-> Reading:
->  
-> > @pavlovskayaNonQuantitativeGIS2009
+Due: [Tutorial 4]() 
+
+Reading:
+
+Pavlovskaya, Marianna. “Non-Quantitative GIS.” In Qualitative GIS: A Mixed Methods Approach, 13–38. London: SAGE Publications Ltd, 2009. [link](https://doi.org/10.4135/9780857024541)
 
 ### Making Public Work
 
 #### Week 5: Cartographic design principles
 
-> Tutorial 5: due prior to the start of class  
->  
-> Reading:
->  
-> > @monmonierHowLieMaps2018 (Selections)  
+Due: [Tutorial 5]()
+
+Reading:
+
+Monmonier, Mark. How to Lie with Maps, Third Edition. 3 edition. Chicago ; London: University of Chicago Press, 2018.
+
+Desimini, Jill;, and Charles Waldheim. Cartographic Grounds: Projecting the Landscape Imaginary, 2016.
 > @desiminiCartographicGroundsProjecting2016 (Selections)  
 
 #### Week 6: Producing public work through interactive maps on the web
 
-> Tutorial 6: due prior to the start of class  
->  
-> Reading:  
->
-> @desiminiCartographicGroundsProjecting2016 (Selections)  
->
-> In-class presentations of portfolio work in progress.  
->
-> Portfolio due on Tuesday following.  
+Due: [Tutorial 6]()
+
+In-class presentations of project work in progress.  
+
+Project due on Tuesday following.  
