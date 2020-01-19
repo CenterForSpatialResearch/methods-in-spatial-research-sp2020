@@ -1,7 +1,24 @@
 # Tutorial 2
 
+
+- talk about data types
+
+The attributes of this country-level dataset include the short and long-form names of each country in two separate *text* or *string* fields. Two additional text fields describe the global region and subregions (here, determined by the UN) to which each country belongs. Lastly, there are two separate fields denoting the ISO three-digit country code. The ISO_N3 field indeed includes three digits (with placeholder zeros where needed) and the Cnt_Code field does not. In this case, the ISO_N3 field contains text and the Cnt_Code field is numeric. Thus, while the ISO_N3 field appears to contain numeric information, the software does not interpret it as such and would be unable to perform mathematical operations on that field. (Remember that all information contained within a field is of a single data type.)
+
+
 ## Projections in QGIS (From original Tutorial 0)
 
+The Coordinate Reference System Selector dialogue box will appear asking that you confirm (or specify) the coordinate system of the dataset you are adding to your map project. This layer is projected with the Mollweide *projection* based on the World Geodetic System of 1984 (WGS1984) *datum*. Read through the information in the dialogue box confirming this.
+
+**Click OK** in the Coordinate Reference System Selector dialogue box to add the layer to your map project.
+
+**Click Close** in the Data Source Manager dialogue box to exit it.
+
+The layer should appear in your map project as shown below. Note that the colors associated with each polygon feature (in this case depicting national boundaries) is the same for all features in the layer, and the color assigned is arbitrary.
+
+**Save** your map project.
+
+![desc](./assets/Admin0Added.png)
 
 ### Finishing Up
 Thus far, we have been interacting with a Mollweide map projection. Before finishing this tutorial, we will reproject the map data frame to match the original projection of a scanned, *georectified* global population map.
@@ -39,7 +56,7 @@ Notice (green box) that the coordinate reference system information includes mor
 #### Premise & Objectives
 The purpose of this tutorial is to produce and export global map of population by country. For this we will use the national administrative boundaries layer in the previous tutorial, combining it with population data contained in a table. In the process, we will
 - learn more about the QGIS interface,
-- add a csv table to a map project,
+- **add a csv table** to a map project,
 - perform a table join,
 - change the symbology of a vector layer using quantitative attributes,
 - layout and compose a map, and

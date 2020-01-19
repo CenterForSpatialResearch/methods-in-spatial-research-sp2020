@@ -1,5 +1,9 @@
 # Data Sources
 
+- NYC Open Data
+- Data.gov
+- Other US Cities (Socrata)
+
 ## XYZ Tiles
 
 - Stamen

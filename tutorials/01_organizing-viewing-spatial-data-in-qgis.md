@@ -71,7 +71,7 @@ Now you should see an entry for Stamen Toner appear under XYZ Tiles when expande
 
 ![qgis view with data from tileserver](./assets/qgis_tilelayer.png)
 
-The data we get from the tileserver is **raster** data. This means the area shown in our map is continuously covered with an even grid of pixel-like **cells**, each one enclosing a discrete unit of geographic space. Each raster cell in the Toner tile set is colored either black or white. Try changing the zoom level of the map using the scroll wheel on your mouse or using the tools in the Zoom toolbar. As we jump between zoom levels, the tile server sends down new raster tiles with varying spatial resolutions; when we zoom in, each cell represents a smaller and smaller portion of the territory.
+The data we get from the tileserver is **raster data**. This means the area shown in our map is continuously covered with an even grid of pixel-like **cells**, each one enclosing a discrete unit of geographic space. Each raster cell in the Toner tile set is colored either black or white. Try changing the zoom level of the map using the scroll wheel on your mouse or using the tools in the Zoom toolbar. As we jump between zoom levels, the tile server sends down new raster tiles with varying spatial resolutions; when we zoom in, each cell represents a smaller and smaller portion of the territory.
 
 ![raster tileserver zoom levels](./assets/raster_tileserverzoom.png)
 
@@ -89,129 +89,129 @@ Notice that when we change zoom levels this layer stays the same. Each cell in t
 
 ![raster tileserver zoom levels](./assets/raster_staticlayerzoom.png)
 
+Try turning a layer off and on again using the checkboxes in the Layers Panel.
+
 ### Vector Layers from Shapefiles
 
-There are several ways to add data to a map project. We will begin by using the "Add Vector Layer" button located on the Manage Layers Toolbar. If this toolbar is not present, remember you can access it by clicking through "View > Toolbars > Manage Layers Toolbar" from the main menu. (In the screenshot below, the Add Vector Layer button is the first.) Hover your cursor over each option to note their range.
+**Vector data** is another common way to represent spatial data. Instead of a continuous field of cells, vector data describes specific **features** using points, lines and polygons. If raster data can be said to describe the ground (in an abstract sense), vector data describes the figures or objects that sit within it.
 
-![add vector layer](./assets/qgis_addvectorlayer.png)
+In your file browser (Finder, if you're on a Mac; File Explorer on Windows), navigate to `Shared_Data/Vector/nyc_harlemriverstreettrees` within your project folder. Inside you'll find six files with the same name but different extensions.
 
-**Click** the Add Vector Layer button to open the Data Source Manager dialogue box and access the Vector options. There, you can **navigate** to the `Tutorial0_ClassData/Shape/` folder, which contains the vector shapefile layer we will use for this project, by clicking the Browse `...` button highlighted in red below. (Alternatively, you an always use the Browse option to navigate through your files.)
+![shapefile in finder view](./assets/vector_shapefileinfinder.png)
 
-![desc](./assets/DataSourceManager.png)
+In the ESRI Shapefile format, one way of storing vector data, this collection of files is referred to (confusingly) as a shapefile. While it's enclosed within a folder here for clarity and convenience, this will not always be the case. However, all parts of the shapefile must be stored within the same folder to function properly. The different files we see here each play different roles in describing the data, as outlined below:
 
-![desc](./assets/FileBrowsingSHP.png)
-
-There are a number of different file extensions here that may be unfamiliar. Shapefiles are collections are separate files that describe different information or perform specific roles. The primary component files are as follows:
-
-- .shp - The main file that stores the feature geometry (required).
-- .shx - The index file that stores the index of the feature geometry (required).
-- .dbf - The dBASE table that stores the attribute information of features (required).
-- .sbn and .sbx - The files that store the spatial index of features.
-- .prj - The file that stores the coordinate system information.
+- **.shp** stores the feature geometry itself and is always required.
+- **.dbf** stores the attribute information of features (also required).
+- **.prj** - The file that stores the coordinate system information.
+- **.shx** stores the index of the feature geometry (required).
+- **.sbn** and **.sbx** store the spatial index of features.
 - For more information on these extensions and others see [this explanation by ESRI](http://webhelp.esri.com/arcgisdesktop/9.2/index.cfm?TopicName=Shapefile_file_extensions).
 
-The files associated with a shapefile must stay together in the same folder, otherwise QGIS will not be able to load the layer (for the required files) or may not read it properly.
+If you navigate to this same location in the QGIS Browser Panel, you'll see that it displays only one item of the six, with a blue blob icon to the left indicating it is a vector data file.
 
-We will add the admin_0_countries shapefile (`admin_0_countries.shp`). Select the file and click Open.
+![shapefile in qgis browser view](./assets/vector_shapefileinbrowser.png)
 
-Confirm that the appropriate file is named in the Vector Dataset(s) path in the Data Source Manager dialogue box and **click Add.**
+To add a vector layer to your project, simply drag the displayed shapefile into your Layers Panel or Map View. Let's add this shapefile (of street trees in our project area, obtained from the 2015 NYC Street Tree Census) to the map. You can also use Layer > Add Layer > Add Vector Layer on the Menu Bar, or the Add Vector Layer button in the Manage Layers Toolbar (not visible by default). You should now see three layers in your project:
 
-![desc](./assets/CRSSelector.png)
+![shapefile added to qgis](./assets/qgis_shapefileadded.png)
 
-The Coordinate Reference System Selector dialogue box will appear asking that you confirm (or specify) the coordinate system of the dataset you are adding to your map project. This layer is projected with the Mollweide *projection* based on the World Geodetic System of 1984 (WGS1984) *datum*. Read through the information in the dialogue box confirming this.
-
-**Click OK** in the Coordinate Reference System Selector dialogue box to add the layer to your map project.
-
-**Click Close** in the Data Source Manager dialogue box to exit it.
-
-The layer should appear in your map project as shown below. Note that the colors associated with each polygon feature (in this case depicting national boundaries) is the same for all features in the layer, and the color assigned is arbitrary.
-
-**Save** your map project.
-
-![desc](./assets/Admin0Added.png)
-
-The layer name appears listed in the Layers Panel, along with a swatch of its symbol. You can **toggle** layers on and off by clicking the check-mark next to their name, allowing you to choose which are visible when multiple layers are added to a project. Further, you can arrange the order in which the layers are rendered by reordering the list (simply click and drag to reorder).
+Try reordering your layers in the Layers Panel by dragging the street trees layer up or down the list and then put them back in order.
 
 ### Vector Layers from GeoJSON
 
+If you find yourself thinking shapefiles seem too complicated and messy, you're not alone! As more and more spatial data has been published and shared online, people have recognized the need for a more portable format for vector data. [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) is a standard format for spatial data defined and administered by a community of users. Its main advantage over the shapefile is that it encodes geometry, attributes, indexes, projections, metadata and more **within a single file**. In practice, GeoJSON and Shapefiles are interchangeable, but GeoJSON is much easier to manage because the user has only one file per layer to worry about. Adding a vector layer from GeoJSON works the same way, just drag the file into your Layer Panel or Map View from the Browser or another location on your computer. Try it with the `nyc_harlemriverbldgs.geojson` file under `Shared_Data/vector`.
 
-Once you're done adding data, it's probably a good idea to save your project.
+![geojson added to qgis](./assets/qgis_geojsonadded.png)
+
+In the "Rotation" field in the Status Bar (bottom of the screen), enter "-28.7" to set your view to match the orientation of the Manhattan street grid. Pan and zoom your map so that the blocks between 125th and 128th Streets and Park and 5th Avenue are visible. You can Pan using the Pan tool in the Map Navigation Toolbar, or by clicking and dragging the scroll wheel on your mouse.
+
+![pan and zoom to 125th and Park](./assets/qgis_panandzoom.png)
+
+QGIS allows you to **bookmark** a region on your map for later reference by pressing Cmd-B on your keyboard, clicking the New Bookmark button on the Map Navigation Toolbar, or selecting View > New Bookmark from the Menu Bar. Create a bookmark for the map view you just set up. The Spatial Bookmarks Panel will automatically be added to the interface. To restore a bookmark, select it here and press Zoom to Bookmark at the top of the Panel.
+
+![qgis bookmark panel](./assets/qgis_bookmarkpanel.png)
+
+Now that all of your data has been added to the map, save the file.
 
 ## Viewing Attributes
 
-### Open the Attribute Table
+An important advantage of vector data is that each feature can be associated with various attributes – qualitative or quantitative data describing the feature in question.
 
-To access the *Attribute Table* of associated with a vector feature class (and thus inspect the attributes of each feature), **right-click** on the layer name in the Layers panel and **select** Open Attribute Table.
+One way to see the attributes for a given feature is using the Identify Features tool at the left side of the the Attributes Toolbar.
 
-![desc](./assets/OpenAttributeTable.png)
+![qgis attributes toolbar](./assets/qgis_attributestoolbar.png)
 
-The layer's Attribute Table will appear, allowing you to inspect the information contained in the shapefile per feature. In the case of this basic administrative boundary layer, it contains information commonly used to identify countries. In the screenshot below, the table is sorted by the Name *field* (click on the field *header* to sort). The first feature is *selected* (click on the row label -- in this case, "1"). The corresponding polygon feature is also selected within the map project's *data frame*.
+Turn off the two raster layers in your map. Click the street trees layer to select it. Then, with the Identify Features tool selected, click one of the points in the layer. The Identify Results Panel will appear with information about the point you've selected:
 
-![desc](./assets/AttributeTableBasic.png)
+![qgis identify features](./assets/qgis_identifyfeatures.png)
 
-The attributes of this country-level dataset include the short and long-form names of each country in two separate *text* or *string* fields. Two additional text fields describe the global region and subregions (here, determined by the UN) to which each country belongs. Lastly, there are two separate fields denoting the ISO three-digit country code. The ISO_N3 field indeed includes three digits (with placeholder zeros where needed) and the Cnt_Code field does not. In this case, the ISO_N3 field contains text and the Cnt_Code field is numeric. Thus, while the ISO_N3 field appears to contain numeric information, the software does not interpret it as such and would be unable to perform mathematical operations on that field. (Remember that all information contained within a field is of a single data type.)
+You'll see that this particular tree is a Honey Locust, in good health, and has been given assigned a `tree_id` of 40945. No problems!
 
-To **deselect** any selected features, click the Deselect All button on the Attribute Table's toolbar (or on the Attributes Toolbar).
+If you want to see the attributes for multiple features at a time, you can use the **attribute table**. It can be accessed by right-clicking any vector layer, and picking "Open Attribute Table" from the menu. Let's try it with our building footprints layer:
 
-![desc](./assets/Deselect.png)
+![open attribute table](./assets/qgis_openattributetable.png)
 
-#### On your own: Interactively Selecting and Inspecting Features and Attributes
+Inside the attribute table, you'll see a list of rows, each corresponding to a feature. **Fields** containing different types of attribute data are displayed as columns. Here, we have things like construction year, roof and ground heights, and geometry source. You can click any field name to sort features on that field. Clicking the row number will **select** a single feature, you can also select multiple features by holding cmd or shift while clicking. Features selected in the attribute table can be located in the map view by clicking the "Zoom the map to selected rows" button, located near the middle of the attribute table's toolbar. To reduce clutter in the interface, you can dock the attribute table by pressing the Dock Attribute Table button, second from the right in the same toolbar.
 
-Interactively select features in the Attribute Table to highlight the corresponding polygon in the data frame.
+![open attribute table](./assets/qgis_attributetable.png)
 
-Of course, the relationship between the geometry and attributes of a feature works in the opposite direction as well. Using the Selection Tool from the Attributes Toolbar (chosen in the screenshot below), you can also interactively select polygons and highlight them in the Attribute Table. Further, you can isolate selected features from the table: choose Show Selected Features from the the Attribute Table's filter drop-down menu.
+At any given time, the features selected in the attribute table and the map view will be the same. You can control the selection in the attribute table in addition to selecting features directly from the map, using the selection tools in the attributes toolbar. "Select features by area or single click", near the middle of the toolbar, is the default option. Use this to select some buildings on the map. At first, you may not see any changes reflected in the attribute table, but you can use the "Move Selection to Top" button in the attribute table toolbar to make sure selected features are always shown in the top rows of the table.
 
-![desc](./assets/InteractiveSelection.png)
+![selected features from map](./assets/qgis_selectionmap.png)
 
-Notice in the screenshot above that Indonesia is selected. From the Attribute Table we can see that the many polygons representing the area of Indonesia collectively represent only one feature in the dataset. This is an example of a *multipart polygon*.
+**Deselect** any selected features using the " button (either in the attributes toolbar or the attribute table toolbar). Use your bookmark to restore your earlier view, turn on the two raster layers again, and close the attribute table.
 
-While exploring, you can zoom and pan across the map's data frame with the tools included in the Map Navigation Toolbar (below) or by scrolling (to zoom) and holding (to pan) your middle mouse button.
+## Changing the Appearance of Data in the Map
 
-![desc](./assets/NavigationToolbar.png)
+We'll discuss map symbology in more detail later in the workshop, but for now, we'll walk through a few simple changes to the appearance of the four layers in your map. First, we will change the default symbol used to visualize the street trees layer. Second, we'll will assign colors to each building polygon based on a field in its attribute table. Finally we'll learn to change layer transparency settings to better show relationships between layers through superimposition.
 
-**Deselect** any selected features. Return your map to its full extents by **clicking the Zoom Full button**. **Save** your QGIS map project.
+In QGIS, the appearance of each layer is controlled through the Layer Properties dialogue box, which you can access by right-clicking on the layer name in the Layers Panel and selecting "Properties".
 
-## Changing the Appearance of Data (Symbology)
+### Changing a Single Symbol
 
-We will discuss map *symbology* and cartography more completely later in the workshop, but for now, we will learn to make a few simple changes to the appearance of the national boundaries layer. First, we will change the default *symbol* used to visualize the data layer. Second, we will assign colors to each polygon based on a qualitative field in its attribute table (in this case, the subregion designation).
+First, let's change the appearance of our street trees layer. Access the Layer Properties and then click the "Symbology" tab.
 
-There are a few short-cut options in the QGIS interface for quickly changing a layer's symbols. We will walk through the Layer Properties dialogue box, which includes these and many more options and functions per layer.
+![single symbol for points](./assets/qgis_pointsymbol.png)
 
-#### Accessing Symbology Properties
+You'll see a few readymade symbol options displayed under "Favorites". Try changing the symbol to "dot green" and click Apply to see changes.
 
-To access the Layer Properties dialogue box, **right-click** on the layer name (`admin_0_countries`) in the Layers Panel and choose **Properties**.
+All of the symbol display parameters can also be controlled individually, and further options can be found if you click "Simple Marker" under Marker in the symbol outline toward the top of the window. Experiment with the options for each one.
 
-From the lelf-hand menu, choose the **Symbology** menu. You should notice that the layer is currently symbolized with a "Single Symbol" system and a "simple fill." **Highlight** "Simple Fill" from the panel at the top of the dialogue box to access the symbol options.
+Set "Stroke Style" to "No Pen", change the units drop-down in the Size row to "Map Units", then click the button at the right side of the Size row and click "Edit" under Expression. Enter `("tree_dbh"/2)+10` in the Expression String Builder and click OK. Notice that the tree points are now displayed with variable size defined by the trunk diameter field.
 
-![desc](./assets/SimpleFill.png)
+Once you're satisfied with the appearance of your layer, click OK.
 
-#### Changing a Single Symbol
-Take a moment to read through the various options and to experiment with an alternative symbol. **Note** that these options are tailored to a polygon feature class. (Polyline layers, for example, would not have "fill" options.) You can specify the color and style of the polygon fill and the color and width of the polygon stroke (outline).
+![tree symbology changed](./assets/qgis_pointsymbolcustom.png)
 
-**Click** Apply to apply your changes. When you are satisfied with your decisions, **click** OK to save them and close the Properties dialogue box. In the example below, the features have a transparent fill and a heavy, red stroke.
+### Qualitative or Categorical Symbology
 
-![desc](./assets/SingleSymbolChanged.png)
+Next let's look at how to use attributes to control the color of different features. Remember that our building footprint dataset contains a construction year for each building. If we want to be able to distinguish new buildings from old ones on our map, we can use color.
 
-#### Qualitative or Categorical Symbology
-We can also use the layer's attributes to organize or categorize the map's symbology. To do this, access the Layer Properties (Symbology menu) dialogue box again and specify **Categorized** symbols from the drop-down menu at the top of the dialogue.
+Again, access the Symbology tab under layer properties for the builing footprints layer. This time, since the data is polygons instead of points, we have different options in the drop-down at the top of the window. Choose "Graduated".
 
-![desc](./assets/CategoricalSymbol.png)
+Next, click the Expression button at the right-hand side of the "Column" row and enter ` to_int(  "cnstrct_yr" )` in the editor. Click OK. Normally we would be able to just choose construction year from the Column drop-down, but in this particular dataset the data is formatted as text rather than a number so it must be converted with an expression.
 
-The symbology options will change, and from here we can quickly assign separate symbols to each feature within unique groups described in the Attribute Table. In this case, we will effectively color-code our polygons based on their subregion.
+Next, click the color ramp. By default it will run from white to red, but we want to change "Color 1" in the window that pops up to blue. Click OK to save your color ramp.
 
-1. From the Column drop-down menu, **select** the SUBREGION field. **Note** that this menu includes each of the different fields included in the layer's attribute table.
-2. **Confirm** that the Color Ramp option is set to Random Colors. (If it is not, you can select it by clicking the drop-down menu.)
-3. Next, **click** the Classify button toward the bottom of the dialogue box to populate the panel with each unique value from the SUBREGION field. The Symbol list should automatically include each of the subregions listed in our dataset, with unique (randomly generated) color values.
-4. **Click Apply** to apply your symbology changes.
+QGIS can automatically generate a range of colors to use in the layer display, but here we want to set them manually. Change "Classes" to 4, then click Classify. You'll see the list of classes update with auto-generated values, but we can override these with our own numbers. Double-click in the "Values" column for the first symbol, and set the range from 0 to 1960. Set the second one to 1960 to 1980, the third from 1980 to 2000 and the last one to 2000 to 2020. You'll notice that the lower value automatically updates to reflect the entry for the previous class. Click Apply.
 
-![desc](./assets/Subregions.png)
+Finally, expand the "Layer Rendering" options at the bottom of the window. Set Opacity to ~70%. Click OK. The age of buildings on the map is now visualized, and the transparency allows us to compare the present-day building layer with the historical map.
 
-**Note** some of the options here. Each of the category symbols can be individually altered by double-clicking the color symbol swatch in the list. Categories can be toggled on or off (rendering features with those attribute values visible/invisible) or removed from the list altogether.
+![map layers with graduated building symbology](./assets/qgis_graduatedsymbology.png)
 
-When you are satisfied with your categorical symbology strategy, **click OK** to exit the Layer Properties dialogue box.
+Finally, let's give some transparency to the NYPL raster layer as well so it can be compared with the present-day map tiles layer. For raster data, this is set under Layer Properties > Symbology.
 
-**Save** your QGIS project.
+![difference between historic and present-day map](./assets/qgis_rastertransparency.png)
+
+Pan around the map to find some places where the present-day map layers differ from the historic map.
+
+![difference between historic and present-day map](./assets/qgis_rastercomparison.png)
+
+Remember to **Save** your QGIS project before closing.
 
 ---
 
-Tutorial adapted from materials from [Mapping for the Urban Humanities](https://github.com/CenterForSpatialResearch/mapping_for_the_urban_humanities), taught by Bernadette Baird-Zars, Eric Glass & Leah Meisterlin in Summer 2019.
+Tutorial by Carsten Rodin, Spring 2020.
+
+Adapted from materials from [Mapping for the Urban Humanities](https://github.com/CenterForSpatialResearch/mapping_for_the_urban_humanities), taught by Bernadette Baird-Zars, Eric Glass & Leah Meisterlin, Summer 2019.
