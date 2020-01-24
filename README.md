@@ -1,7 +1,9 @@
 # Methods in Spatial Research: Mapping in Public
 
-Columbia GSAPP, Spring 2020 (Session A)  
-Instructor: Carsten Rodin  
+Columbia GSAPP, Spring 2020 Session A  
+Instructor: Carsten Rodin [ccr2139@columbia.edu](mailto:ccr2139@columbia.edu)  
+TA: Nadine Fattaleh [nf2337@columbia.edu](mailto:nf2337@columbia.edu)  
+Location: First session in 200 Buell, thereafter 208B Butler ([studio@butler](https://studio.cul.columbia.edu/spaces/butler/))  
 
 ## Course Description
 
@@ -27,9 +29,19 @@ Through completion of the course, participants will:
 30% engaged, thoughtful, and active in-class participation and discussion of assigned readings and mapping tutorials  
 15% weekly written reading responses and map critiques  
 30% weekly mapping tutorials  
-25% mapping portfolio and presentation, revision of two selected mapping tutorials and two selected reading responses or map critiques into an online portfolio of work and 10-minute in-class presentation on the portfolio in progress.
+25% final map, presentation and 3-page reflection
 
-Starting in week 3, you should be thinking about a theme or topic for a final project. We'll have two tutorials on making spatial datasets, during which you'll be able to choose a subject and produce two sets of data. Think about how they might interact with each other through juxtaposition or superimposition. Week 5 will focus on cartographic design principles and we'll consider the various design choices you'll face in telling a story about your two datasets. Finally, in week 6, we'll look at how to publish your map online and make it interactive. This map will be the final project.
+Starting in Week 3, you should be thinking about a theme or topic for a final project. The discussion for that class and the following tutorial will cover how to make your own spatial datasets, both from first-hand observation and archival research. Think about what you might want to document, expose or explore, and how the materials you produce through these two frames of reference could reflect on each other. Week 4 will explore cartographic design principles and we'll consider the various design choices you'll face in telling a story about your two datasets. Finally, in Weeks 5 and 6, we'll look at how to publish your map online and make it interactive. You'll present your work-in-progress map during our last session before submitting it for review along with a short written reflection.
+
+## Computing Resources
+
+The course assumes all participants have access to a personal computer, ideally a laptop for in-class tutorials. You will need to download and install both [QGIS](https://qgis.org/en/site/forusers/download.html) prior to completing the first tutorial and [VS Code](https://code.visualstudio.com) for other tutorials later in the semester. Please contact the instructor directly with any issues or questions related to hardware/software.
+
+During the semester, students are encouraged to take advantage of the resources offered by the [Lehman Library Map Collection](https://library.columbia.edu/libraries/maps.html) and the [Empirical Reasoning Center](https://erc.barnard.edu) at Barnard.
+
+## Course Materials & Resources
+
+This page is both your syllabus and map to all course-related resources. The course schedule can be found below, and contains links to all tutorials. Readings and tutorial datasets can be found in the [course folder](https://drive.google.com/drive/folders/1IVjKSGSpNVmGB6r6zkiWuKoeryMfxZow?usp=sharing) on Google Drive. In an attempt to keep things simple, we will not be using CourseWorks or any other online materials.
 
 ## Community and Accessibility
 
@@ -37,73 +49,54 @@ This is a discussion and collaborative-critique based course. All students and t
 
 GSAPP is committed to full inclusion of all students. Students needing any form of accommodation due to a disability should speak with the instructor at the beginning of the semester.
 
-## Computing Resources
-
-The course assumes all participants have access to a personal computer. You will need to download and install both [QGIS](https://qgis.org/en/site/forusers/download.html) and [VS Code](https://code.visualstudio.com) prior to completing the first tutorial. Please contact the instructor directly with any computing issues.
-
 ## Academic Integrity
 
 Students in all GSAPP courses are expected to uphold the highest levels of academic integrity and abide by the [Honor Code](https://www.arch.columbia.edu/honor-system) and [Plagiarism Policy](https://www.arch.columbia.edu/plagiarism-policy).
 
 ## Course Schedule
 
-### The Cartographic View
+### Week 1: Introduction to Critical GIS Concepts and Techniques
 
-#### Week 1: An introduction to critical GIS concepts and techniques
+In Class: Begin [Tutorial 1](./tutorials/01_organizing-viewing-spatial-data-in-qgis)
 
-[Tutorial 1 (In-Class)](./tutorials/01_organizing-viewing-spatial-data-in-qgis)
-
-Reading:
+Kurgan, Laura. “Mapping Considered as a Problem of Theory and Practice" & "Representation and the Necessity of Interpretation.” In Close Up at a Distance: Mapping, Technology, and Politics. New York: Zone Books, 2013.
 
 Harley, J. B. “Deconstructing the Map.” Passages, 1992.
 
-Kurgan, Laura. “Mapping Considered as a Problem of Theory and Practice" & "Representation and the Necessity of Interpretation.” In Close up at a Distance: Mapping, Technology, and Politics. New York: Zone Books, 2013.
+### Week 2: Projections, Making Data from Data
 
-Couclelis, Helen. “People Manipulate Objects (but Cultivate Fields): Beyond the Raster-Vector Debate in GIS.” In Theories and Methods of Spatio-Temporal Reasoning in Geographic Space, edited by Frank, Campari, and Formentini, 65–77. Berlin: Springer-Verlag, 1992.
-
-#### Week 2: Working with cartographic projections
-
-Due: [Tutorial 2](./tutorials/)
-
-Reading:
+Due: [Tutorial 1](./tutorials/01_organizing-viewing-spatial-data-in-qgis)
 
 Corner, James. “The Agency of Mapping.” In Landscape Imagination: Collected Essays of James Corner 1990-2010. New York: Princeton Architectural Press, 2014.
 
-### Making Spatial Datasets
+Couclelis, Helen. “People Manipulate Objects (but Cultivate Fields): Beyond the Raster-Vector Debate in GIS.” In Theories and Methods of Spatio-Temporal Reasoning in Geographic Space, edited by Frank, Campari, and Formentini, 65–77. Berlin: Springer-Verlag, 1992.
 
-#### Week 3: Making spatial datasets through observation and sensing
+### Week 3: Making Spatial Data through Observation and Archives
 
-Due: [Tutorial 3]()
-
-Reading:
+Due: [Tutorial 2]()
 
 Morris, Dee, and Stephen Voyce. “Embodied Mapping, Locative Mapping, and New Media Poetics.” Jacket2, March 20, 2015. ([link](https://jacket2.org/commentary/embodied-mapping-locative-mapping-and-new-media-poetics))
 
-#### Week 4: Making spatial datasets through archival research
-
-Due: [Tutorial 4]() 
-
-Reading:
-
 Pavlovskaya, Marianna. “Non-Quantitative GIS.” In Qualitative GIS: A Mixed Methods Approach, 13–38. London: SAGE Publications Ltd, 2009. [link](https://doi.org/10.4135/9780857024541)
 
-### Making Public Work
+### Week 4: Cartographic Design Principles: The Map as Drawing
 
-#### Week 5: Cartographic design principles
-
-Due: [Tutorial 5]()
-
-Reading:
+Due: [Tutorial 3]() 
 
 Monmonier, Mark. How to Lie with Maps, Third Edition. 3 edition. Chicago ; London: University of Chicago Press, 2018.
 
 Desimini, Jill;, and Charles Waldheim. Cartographic Grounds: Projecting the Landscape Imaginary, 2016.
-> @desiminiCartographicGroundsProjecting2016 (Selections)  
 
-#### Week 6: Producing public work through interactive maps on the web
+### Week 5: The Networked Map
 
-Due: [Tutorial 6]()
+Due: [Tutorial 4]()
 
-In-class presentations of project work in progress.  
+Reading TBD
+
+### Week 6: Making Things Public: Designing for the Interactive Web
+
+Due: [Tutorial 5]()
+
+Tentative: In-class presentations of project work in progress.  
 
 Project due on Tuesday following.  
