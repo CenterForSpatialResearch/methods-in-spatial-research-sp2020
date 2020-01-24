@@ -59,6 +59,8 @@ Harley, J. B. “Deconstructing the Map.” Passages, 1992.
 
 Kurgan, Laura. “Mapping Considered as a Problem of Theory and Practice" & "Representation and the Necessity of Interpretation.” In Close up at a Distance: Mapping, Technology, and Politics. New York: Zone Books, 2013.
 
+Couclelis, Helen. “People Manipulate Objects (but Cultivate Fields): Beyond the Raster-Vector Debate in GIS.” In Theories and Methods of Spatio-Temporal Reasoning in Geographic Space, edited by Frank, Campari, and Formentini, 65–77. Berlin: Springer-Verlag, 1992.
+
 #### Week 2: Working with cartographic projections
 
 Due: [Tutorial 2](./tutorials/)
