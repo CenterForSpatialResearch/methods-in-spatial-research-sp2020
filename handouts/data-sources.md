@@ -13,7 +13,6 @@
   - https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}
 - OSM
 
-
 ## Georeferenced Raster Maps
 
 - [NYPL Map Warper](http://maps.nypl.org/warper/)
