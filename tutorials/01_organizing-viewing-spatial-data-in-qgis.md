@@ -190,7 +190,7 @@ Next let's look at how to use attributes to control the color of different featu
 
 Again, access the Symbology tab under layer properties for the builing footprints layer. This time, since the data is polygons instead of points, we have different options in the drop-down at the top of the window. Choose "Graduated".
 
-Next, click the Expression button at the right-hand side of the "Column" row and enter ` to_int(  "cnstrct_yr" )` in the editor. Click OK. Normally we would be able to just choose construction year from the Column drop-down, but in this particular dataset the data is formatted as text rather than a number so it must be converted with an expression.
+Next, click the Expression button at the right-hand side of the "Column" row and enter `to_int(  "cnstrct_yr" )` in the editor. Click OK. Normally we would be able to just choose construction year from the Column drop-down, but in this particular dataset the data is formatted as text rather than a number so it must be converted with an expression.
 
 Next, click the color ramp. By default it will run from white to red, but we want to change "Color 1" in the window that pops up to blue. Click OK to save your color ramp.
 

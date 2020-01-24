@@ -1,5 +1,6 @@
-# Tutorial 2
-
+---
+title: Organizing and Viewing Spatial Data in QGIS
+---
 
 - talk about data types
 
