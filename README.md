@@ -26,10 +26,14 @@ Through completion of the course, participants will:
 
 ## Requirements and Grading
 
-30% engaged, thoughtful, and active in-class participation and discussion of assigned readings and mapping tutorials  
-15% weekly written reading responses and map critiques  
-30% weekly mapping tutorials  
-25% final map, presentation and 3-page reflection
+- 30% engaged, thoughtful, and active in-class participation and discussion
+- 15% weekly discussion questions
+- 15% weekly mapping tutorials
+- 40% final map, presentation and 3-page reflection
+
+Two discussion questions on the week's reading should be uploaded to "Questions" in the Google Drive folder by 6PM Thursdays. Please save these as a plain text file in the format `uni_firstnamelastname_weekN.txt` (for example, `ccr2139_carstenrodin_week2.txt`). There are no bad questions, but [this page](https://teachingcommons.stanford.edu/resources/teaching/student-teacher-communication/designing-effective-discussion-questions) has some good tips for asking better ones.
+
+Each tutorial will have a note in **bold** at the very end explaining what you're expected to turn in. If the deliverable is a single file, upload it to the Google Drive under Deliverables > Tutorial N (where N is the number of the week's exercise) as `uni_firstnamelastname_tutorialN`. If there are multiple files, first compile them into a .zip and then follow the same convention.
 
 Starting in Week 3, you should be thinking about a theme or topic for a final project. The discussion for that class and the following tutorial will cover how to make your own spatial datasets, both from first-hand observation and archival research. Think about what you might want to document, expose or explore, and how the materials you produce through these two frames of reference could reflect on each other. Week 4 will explore cartographic design principles and we'll consider the various design choices you'll face in telling a story about your two datasets. Finally, in Weeks 5 and 6, we'll look at how to publish your map online and make it interactive. You'll present your work-in-progress map during our last session before submitting it for review along with a short written reflection.
 
@@ -42,6 +46,10 @@ During the semester, students are encouraged to take advantage of the resources 
 ## Course Materials & Resources
 
 This page is both your syllabus and map to all course-related resources. The course schedule can be found below, and contains links to all tutorials. Readings and tutorial datasets can be found in the [course folder](https://drive.google.com/drive/folders/1IVjKSGSpNVmGB6r6zkiWuKoeryMfxZow?usp=sharing) on Google Drive. In an attempt to keep things simple, we will not be using CourseWorks or any other online materials.
+
+## Registration
+
+Students from outside GSAPP are welcome to take the course, please follow the instructions provided on [this page](https://www.arch.columbia.edu/cross-registration) to register and contact both the instructor and TA with any questions/issues.
 
 ## Community and Accessibility
 

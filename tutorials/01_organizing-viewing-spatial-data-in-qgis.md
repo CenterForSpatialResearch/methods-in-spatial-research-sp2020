@@ -208,7 +208,9 @@ Pan around the map to find some places where the present-day map layers differ f
 
 ![difference between historic and present-day map](./assets/qgis_rastercomparison.png)
 
-Remember to **Save** your QGIS project before closing.
+Remember to **Save** your project when finished.
+
+**Deliverable: Please take a screenshot of your finished map and upload it to Google Drive under Deliverables/Tutorial 1.**
 
 ---
 
