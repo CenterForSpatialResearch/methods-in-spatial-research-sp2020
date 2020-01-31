@@ -1,3 +1,7 @@
+---
+title: Tutorial 4
+publish: false
+---
 
 
 ## Georeferencing a scanned paper map

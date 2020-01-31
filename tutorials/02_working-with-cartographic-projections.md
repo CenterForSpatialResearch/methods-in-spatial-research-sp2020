@@ -1,5 +1,6 @@
 ---
-title: Translating and Relating Spatial Data in QGIS
+title: Tutorial 2
+publish: false
 ---
 
 

@@ -1,5 +1,6 @@
 ---
 title: Tutorial 6
+publish: false
 ---
 todo: look at https://github.com/CenterForSpatialResearch/MappingForTheUrbanHumanities_2017/blob/master/Tutorials/07_Webmaps.md
 
