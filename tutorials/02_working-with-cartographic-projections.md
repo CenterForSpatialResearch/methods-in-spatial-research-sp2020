@@ -1,9 +1,7 @@
 ---
-title: Organizing and Viewing Spatial Data in QGIS
+title: Translating and Relating Spatial Data in QGIS
 ---
 
-- talk about data types
-- SPATIAL JOIN
 
 The attributes of this country-level dataset include the short and long-form names of each country in two separate *text* or *string* fields. Two additional text fields describe the global region and subregions (here, determined by the UN) to which each country belongs. Lastly, there are two separate fields denoting the ISO three-digit country code. The ISO_N3 field indeed includes three digits (with placeholder zeros where needed) and the Cnt_Code field does not. In this case, the ISO_N3 field contains text and the Cnt_Code field is numeric. Thus, while the ISO_N3 field appears to contain numeric information, the software does not interpret it as such and would be unable to perform mathematical operations on that field. (Remember that all information contained within a field is of a single data type.)
 
@@ -150,7 +148,7 @@ In the Layer Properties Joins panel, you should now see the details of the new j
 
 **IMPORTANT NOTE**: Table joins are not permanent changes to a dataset. Instead, they are temporary associations made between datasets within the context of the specific map project. In other words, if you added the admin_0_countries layer to a new map project, it would not include the data from the population table. (Again, this is extremely uesful because we can associate several different types of data with such a layer.)
 
-### Exporting a new shapefile
+### Exporting a new shapefile CHANGE THIS TO GEOJSON
 Because Table Joins are temporary, it is often useful to create a new shapefile (vector feature class) with the joined data permanently included in the layer. To do this, we will export a new shapefile from the results of the table join.
 
 To export a new feature layer from the admin_0_countries layer, **right-click** on the layer name in the Layers panel and click through Export > Save Features As... to open the Save Vector Layer as... dialogue box.
@@ -204,7 +202,7 @@ When you are finished, the new layer's attribute table should read cleanly.
 
 **Save** your map project.
 
-
+REMOVE SINCE THIS ALEEADY FOR DISXUSSED 
 ### Intro to Quantitative Symbols
 We will further discuss quantitative map symbology (and classification) in a later tutorial. For now, let's make a map of this newly joined population data!
 
@@ -273,27 +271,10 @@ Finally, you can **export** your layout as an Image, SVG, or PDF by either click
 
 When you are finished, **Save** your Layout and Map project.
 
-______________________________________________________________________________________________________________
-Tutorial written by Leah Meisterlin, for *Mapping for the Urban Humanities*, a intensive workshop for Columbia University faculty taught in Summer 2019 by the [Center for Spatial Research](http://c4sr.columbia.edu). More information about the course is available [here](http://c4sr.columbia.edu/courses/mapping-urban-humanities-summer-bootcamp).
+**Deliverable: Save your map layout as a PDF and upload it to the Deliverables folder**
 
+---
 
-[AddTable]: Images/2019/Tutorial1_AddTable.png
-[csvOptions1]: Images/2019/Tutorial1_csvOptions1.png
-[csvOptions2]: Images/2019/Tutorial1_csvOptions2.png
-[TwoTables]: Images/2019/Tutorial1_TwoTables.png
-[Join1]: Images/2019/Tutorial1_Join1.png
-[Join2]: Images/2019/Tutorial1_Join2.png
-[Join3]: Images/2019/Tutorial1_Join3.png
-[Export1]: Images/2019/Tutorial1_Export1.png
-[Export2]: Images/2019/Tutorial1_Export2.png
-[Export3]: Images/2019/Tutorial1_Export3.png
-[Export4]: Images/2019/Tutorial1_Export4.png
-[FieldAlias]: Images/2019/Tutorial1_FieldAlias.png
-[Choropleth1]: Images/2019/Tutorial1_Choropleth1.png
-[Choropleth2]: Images/2019/Tutorial1_Choropleth2.png
-[Layout1]: Images/2019/Tutorial1_Layout1.png
-[Layout2]: Images/2019/Tutorial1_Layout2.png
-[Layout3]: Images/2019/Tutorial1_Layout3.png
-[Layout4]: Images/2019/Tutorial1_Layout4.png
+Tutorial by Carsten Rodin, Spring 2020.
 
-Adapted from [Mapping for the Urban Humanities, Summer 2019 Workshop](https://github.com/CenterForSpatialResearch/mapping_for_the_urban_humanities) by Bernadette Baird-Zars, Eric Glass, Leah Meisterlin
+Adapted from materials from [Mapping for the Urban Humanities](https://github.com/CenterForSpatialResearch/mapping_for_the_urban_humanities), taught by Bernadette Baird-Zars, Eric Glass & Leah Meisterlin, Summer 2019.
