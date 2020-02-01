@@ -81,7 +81,7 @@ Couclelis, Helen. “People Manipulate Objects (but Cultivate Fields): Beyond th
 
 ### Week 3: Making Spatial Data through Observation and Archives
 
-Due: [Tutorial 2]()
+Due: [Tutorial 2](./tutorials/02_working-with-cartographic-projections)
 
 Morris, Dee, and Stephen Voyce. “Embodied Mapping, Locative Mapping, and New Media Poetics.” Jacket2, March 20, 2015. ([link](https://jacket2.org/commentary/embodied-mapping-locative-mapping-and-new-media-poetics))
 

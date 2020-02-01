@@ -1,276 +1,96 @@
 ---
-title: Tutorial 2
-publish: false
+title: Drawing Things Together – Projections and Joins in QGIS
 ---
 
+## Objectives
 
-The attributes of this country-level dataset include the short and long-form names of each country in two separate *text* or *string* fields. Two additional text fields describe the global region and subregions (here, determined by the UN) to which each country belongs. Lastly, there are two separate fields denoting the ISO three-digit country code. The ISO_N3 field indeed includes three digits (with placeholder zeros where needed) and the Cnt_Code field does not. In this case, the ISO_N3 field contains text and the Cnt_Code field is numeric. Thus, while the ISO_N3 field appears to contain numeric information, the software does not interpret it as such and would be unable to perform mathematical operations on that field. (Remember that all information contained within a field is of a single data type.)
+This tutorial will continue our introduction to QGIS and introduce specific methods for 'drawing together' different datasets within our map environment. We'll first cover how to import a list of points and associated attributes from a .csv file. In doing this, we'll review how **projections** are handled in QGIS, and specifically how to reproject data into a consistent **coordinate reference system** across your project. We'll then review two methods for making connections across datasets - the **table join** and **spatial join**. Finally, you'll learn to use the **print layout** feature to annotate and export maps as PDFs and images.
 
+To get started, open `Tutorial1_GettingStarted` and use "Save As" to create a new copy named `Tutorial2_DrawingThingsTogether`.
 
-## Projections in QGIS (From original Tutorial 0)
+![starting point from last tutorial](./assets/qgis_tut2-start.png)
 
-The Coordinate Reference System Selector dialogue box will appear asking that you confirm (or specify) the coordinate system of the dataset you are adding to your map project. This layer is projected with the Mollweide *projection* based on the World Geodetic System of 1984 (WGS1984) *datum*. Read through the information in the dialogue box confirming this.
+## Adding Data from a CSV
 
-**Click OK** in the Coordinate Reference System Selector dialogue box to add the layer to your map project.
+In the last tutorial, we looked at how to bring different kinds of data into our map environment and how to explore their interrelationships visually. Here we'll attempt to expand on our understanding of how the software handles the translation of data into a common framework using projections. A good way to illustrate this is by spatializing an existing dataset from scratch.
 
-**Click Close** in the Data Source Manager dialogue box to exit it.
+In your Shared_Data folder you should see a new file since last time: `harlem311.csv`. This file contains complaints made to the city's 311 hotline between 2015 and 2016 around our study area from Tutorial 1. Each complaint has Latitude and Longitude coordinates assigned to it:
 
-The layer should appear in your map project as shown below. Note that the colors associated with each polygon feature (in this case depicting national boundaries) is the same for all features in the layer, and the color assigned is arbitrary.
+![harlem 311 latitude longitude](./assets/qgis_311-latlong.png)
 
-**Save** your map project.
+QGIS can draw this data on the map pretty easily, but it needs some extra information from us to do it properly. Remember from the last tutorial that ESRI shapefiles contain a `.prj` which defines the **projection** or **coordinate reference system** the dataset was created in, and that GeoJSON files also contain something similar. Even our `.tiff` raster file and the tile server connection we established also have a way of communicating to the software what projection is being used. As long as this information is provided, QGIS can automatically reconcile the different projections into a common spatial framework using what we call **reprojection on the fly**. Any time you import a new dataset into a blank map, the software will set the Project Coordinate Reference system to match the CRS of the data. New layers that get added are then automatically reprojected in the Map View to match the Project CRS.
 
-![desc](./assets/Admin0Added.png)
+### What's My Projection?
 
-### Finishing Up
-Thus far, we have been interacting with a Mollweide map projection. Before finishing this tutorial, we will reproject the map data frame to match the original projection of a scanned, *georectified* global population map.
+![checking the project CRS](./assets/qgis_project-crs.png)
 
-The georectified map (below) we will add to our project is from the [David Rumsey Historical Map Collection] (https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~225244~5505992;JSESSIONID=fa751117-cbd7-452b-b867-46dac48ea52f#). The map is drawn in the Winkel Tripel projection, which is now commonly used in global atlases for its minimal distortion in distance, area, and direction.
+We can see this if we double-click the CRS label at the right side of the status bar - it should read `EPSG:3857`. In the Project Properties window that appears, we can see that EPSG:3857 is shorthand for "WGS 84 / Pseudo-Mercator", a common projection used by tile-served rasters.
 
-![desc](./assets/Bartholomew1958.png)
+![checking the tile layer CRS](./assets/qgis_stamen-toner-crs.png)
 
+If we right-click our "Stamen Toner" layer, which was the first layer in our project and navigate to the Source tab of the Layer Properties window, we'll see that the projection for this layer is the same.
 
-#### Assigning a new projection
-When assigning a new projection to the data frame, **note** that we are not assigning a new projection or coordinate reference system to our original data layer. Rather, we are using the coordinate reference information contained within each spatial dataset to re-positioning those coordinates according to the rules of a different projection.
+![checking the street trees CRS](./assets/qgis_harlemstreettrees-crs.png)
 
-To change the the Coordinate Reference System of the map project, access the Project Properties dialogue box by clicking the Coordinate Reference System button on the bottom-right of the interface (in the screenshot below) or by clicking through Project > Properties from the Main Menu.
+Check the Harlem River Street Trees layer. This layer has a different projection - "NAD83 / New York Long Island (ftUS)" or EPSG:2263. When we're *viewing* data, this difference doesn't matter at all. The software translates the street trees geometry from EPSG:2263 to EPSG:3857 in the background before drawing it on the map and we don't need to worry.
 
-![desc](./assets/CRSbutton.png)
+When we start to *process* data, we (the users) need to control our use of projections more directly, including when we import points from a .csv table. Let's work on that now. Navigate to your Shared_Data folder in the Browser and locate the harlem311.csv file. Right-click it and select "Properties" to quickly review the Metadata and Attributes. Notice there will be no preview since we haven't specified yet how the software should assign geometry to the records in the table.
 
-In the CRS panel of the Project Properties dialogue box, **notice** the list of pre-installed coordinate systems. (The list is long, detailed, and varied. Almost all projections and datums can be quickly searched online for more information.)
+![importing a csv](./assets/qgis_csv-import.png)
 
-Because we know the projection we need, we can use the Filter option to search for it. In the Filter text box at the top of the dialogue, **type "Winkel"** to isolate the reference systems that include Oswald Winkel's name (highlighted in blue in the screenshot below).
+Choose Layer > Add Layer > Add Delimited Text Layer from the Menu Bar. Under "File Name" in the window that appears, navigate again to the 311 complaint file. You'll notice that much of the information in the dialog auto-fills at this point, including the text encoding, layer name and file format. **Important!** Make sure "Detect field types" under "Record and Fields options" is selected. If you expand the "Geometry Definition" portion of the panel, you'll see that "X field" and "Y field" are assigned to the Longitude and Latitude fields in the table. Sometimes you may need to specify these manually, so always double-check. Finally, under Geometry CRS, click the "Select CRS" button at the right-hand side of the panel and choose WGS 84 / EPSG:4326 from the menu. This is the standard CRS used for raw lat/lon coordinates. Click OK, Add, then Close and you'll see the complaints appear as point data in your map. Try applying your own point symbol in the Layer Properties > Symbology.
 
-![desc](./assets/Winkel.png)
+![311 data visualized](./assets/qgis_csv-import-visualized.png)
 
-In the resulting list of Coordinate Reference Systems, **highlight** the World_Winkel_Tripel_NGS option under Winkel Tripel (red box).
+## Table Joins
 
-Notice (green box) that the coordinate reference system information includes more than the projection itself, but its origin,the datum to which it is applied (WGS84), and its linear unit (meters).
+One way we can start to see correspondences between datasets in our map environment is through a **join**. Joins use two vector layers – a **target layer** and a **join layer** – to create a new version of the target layer with additional attributes based on its relationship with the join layer.
 
-**Click OK** to change the projection of the map project's data frame. You should notice a quick transformation.
+In a **table join**, that relationship is defined by a common attribute field between the two layers. To see how this works, add the `nyc_harlemrivertaxlots` layer from Shared_Data/vector, taking a moment to adjust its appearance to suit your map. You may want to also turn off our two raster layers for clarity. We'll use the new tax lots layer as our target layer, and the 311 complaints as the join layer to see how many complaints there are per building in this area.
 
-**Save** your map project.
+To create the join, open the Processing Toolbox using its toolbar button (it looks like a blue gear). In the panel's search bar, type "join" and you'll see a list of tools appear. Under "Vector general" double-click "Join attributes by field value" to launch the tool. Set Input Layer 1 to your target layer (tax lots) and select "bbl_num2" as its Table Field. Input Layer 2 will be your join layer (311 complaints), and you can set its Table Field to "BBL". We want to only reveal buildings (or tax lots, actually) where there have been at least one complaint, so set Join Type to one-to-one and check "Discard records which could not be joined". Make sure "Open output file after running algorithm" is checked and click "Run". You should see a new layer appear in your Layer Panel with the result. Adjust the layer symbology to help communicate this new information.
 
----
+![table join visualized](./assets/qgis_table-join.png)
 
-## Mapping a Table
+Note that the resulting layer is only temporary - if you close and reopen the program it will disappear. To make it permanent, right-click the layer, choose "Make Permanent" and use the dialog box to save it somewhere in your project folder. It will use the current layer settings (including projection) to save the file.
 
-#### Premise & Objectives
-The purpose of this tutorial is to produce and export global map of population by country. For this we will use the national administrative boundaries layer in the previous tutorial, combining it with population data contained in a table. In the process, we will
-- learn more about the QGIS interface,
-- **add a csv table** to a map project,
-- perform a table join,
-- change the symbology of a vector layer using quantitative attributes,
-- layout and compose a map, and
-- export a finished map.
+## Spatial Joins
 
+A **spatial join** works in a similar way except the relationship between the two tables is defined spatially. Start by adding `nyc_harlemriverstreetsbuffer` layer from Shared_Data/vector - don't worry about changing symbology for now.
 
-### Setting up in QGIS
-**Launch** QGIS and **open** the Tutorial0_GettingStarted project file. When the project loads, immediately **Save As** Tutorial1_MappingATable.qgz.
+In the Procesing Toolbox, find "Join Attributes By Location (Summary)" in the list and launch the tool. Here we'll set the buffered streets layer as the Target ("Input Layer") and the 311 complaints as the Join Layer. Instead of field names, the tool asks us for a "Geometric Predicate" - this is just the spatial relationship we're going to look for in making the connection between the two datasets. Choose "intersects" for now. The tool will let you specify fields to summarize, and the method you want to use (e.g. average, sum etc. under "Summaries to calculate"). Leave both of these blank. Click Run.
 
-We will not be using the raster layer (the scanned and georectified 1958 population density map) to make our global population map. Thus, you can **turn off** the layer (by unchecking it in the Layers Panel) or **remove** the layer from your project by right-clicking on the layer name and selecting "Remove Layer."
+Spatial joins are somewhat computationally intensive, so take a break while it runs. This might be a good time to read about the [Squirrel Census](https://www.thesquirrelcensus.com) if you haven't already.
 
-#### Adding a Delimited Table
-For this tutorial, we will make a map based on global population estimates from 2010. The country-level population data used for this tutorial was published by the [United Nations Population Division](http://esa.un.org/unpd/wpp/Download/Standard/Population/) in 2010. All figures are reported in thousands -- i.e., a value of "7,000" indicates a population of seven million. We have provided a cleaned version of the dataset but the original can be downloaded [here](http://esa.un.org/unpd/wpp/Download/Standard/Population/).
+Once you have your result, try to set up the layer symbology so that it reveals the number of complaints per street through graduated color.
 
-These have been compiled into a simple CSV table (a delimited text file) located in the ClassData\Tutorial1_ClassData\tables folder. The file, called TotalPopulation_Countries.csv, can be opened and inspected in any software that reads tables and spreadsheets (such as Microsoft Excel or Google Sheets). We will add it to our QGIS project, as we added the vector and raster layers in the previous tutorial, and inspect its contents there.
+![table join visualized](./assets/qgis_spatial-join.png)
 
-To add a delimited text file, **click** the Add Delimited Text Layer button on the Manage Layers toolbar, which will open the Data Source Manager dialogue box to the Delimited Text panel.
-
-![AddTable]
-
-In the File Name field, **click** the Browse (`...`) button to navigate to the TotalPopulation_Countries.csv file. Once you have selected the appropriate file, we will walk through some of the various options of the dialogue box individually below. You can **expand** or **collapse** the different option panels as needed. Some of the options are pre-populated by default. Others we will need to specify or change. **Notice** the preview of our data table under Sample Data at the bottom of the dialogue box.
-
-![csvOptions1]
-
-**File Format**: By default, the file format is read as a CSV (comma separated values) because of the file extension.
-
-**Record and Fields Options**: Here, you can specify how your table is imported. Because the first row of our table includes *field headers* we **specify** that the "First record has field names." Similarly, we want the software to "Detect field types" which means QGIS will interpret fields that "seem" to include numbers as numeric.
-
-Take a moment to read through the other options, which are often useful. For example, if numeric values include commas as the decimal separator (rather than field separators) or if your table includes empty fields.
-
-![csvOptions2]
-
-**Geometry Definition**: Here, we have three options for adding a table to our map project. Two will auto-generate location-based geometric features corresponding to the data in the table. (If you click each choice, you will see the options corresponding to them. When you have latitude and longitude coordinates, which is often the case, the Point Coordinates option is quite useful.) For our purposes, we will add our table with **No geometry (attribute only table)**. (In the next step we will use the geometry of the national boundaries to map the population data in this table.)
-
-When the options are set, **click Add** to add the table as a layer in your map project. **Click Close** to close the Data Source Manager dialogue box. You should see the name of the TotalPopulation_Countries table layer in the Layers Panel.
-
-**Save** your QGIS project.
-
-#### Open the Population Table
-The table layer performs the same as the Attribute Table of a vector layer. To open it, **right-click** on the layer name in the Layers panel and **choose** Open Attribute Table.
-
-**Open** the Attribute Table of the admin_0_countries layer in the same manner, in order to compare the two.
-
-![TwoTables]
-
-The total number of features (as well as the number filtered and selected) is listed at the top of each attribute table. Notice that our population table does not include as many countries as those listed in the polygon dataset. Notice also that they appear to have at least two fields in common: They both have a numeric field with the ISO country code, and they both have a Name field.
-
-**Close** your Attribute Tables.
-
-
-### Performing a Table Join
-A *table join* is the process of *appending data from one table to another based on unique values within a common field.* Table joins are almost always one-to-one processes. In this case, we would like to join the population data to the administrative boundary layer, in order to then visualize the global map based on the population values associated with each country.
-
-It appears that we have two fields that might serve as the basis of the join (two fields with unique values within each table, but shared in common between the two tables): the country code field and the country name field. We will use the numeric country code fields for our join. The values in the join fields must be identical in order to match features when performing the join. Because text fields may have spelling errors or errant spaces, the numeric fields are preferable for this matching process.
-
-**Helpful Note:** You will always initiate a join process on the Layer you are joining *to*. This is known as the *Target Layer*.
-
-To assign a joined table to the admin_0_countries layer, **access** its Layer Properties dialogue box by right-clicking on the layer name and clicking Properties.
-
-In the "Joins" panel, click the Add Join button (highlighted in red in the screenshot below) to access the Add Vector Join dialogue box. We will list the options of the Add Vector Join dialogue below.
-
-![Join1]
-
-**Join Layer**: Specify the Attribute Layer you would like to *join to* this layer. In this case, we would like to join the TotalPopulation_Countries table to the this (the administrative boundaries) layer.
-
-**Join Field**: The Join Field is the particular field in the Join Layer that will facilitate the join.
-
-**Target Field**: The Target Field is the field in the Target Layer that will facilitate the join. It must be of the same data type as the Join Field (e.g., numeric, text, etc.).
-
-The Join Field and Target Field do not need to have the same field header (name), but they must be of the same data type (e.g., numeric, text, etc). Further, you should know before joining that they include unique values in order to ensure a proper one-to-one join. (Imagine if we accidentally joined the population data corresponding to one country to the boundaries of another. Now imagine if we did that across the dataset, and mapped the results!)
-
-Take a moment to read through the other options in this dialogue box. We will change only one of the defaults: the **Joined Fields** options under Dynamic Form.
-
-**Select** both the Dynamic Form option and the Joined Fields option. In the expanded Joined Fields option, notice that all the fields in the Join Layer (the population table) are listed. Here you can specify which of the Join Layer's fields should be appended to the Target Layer's (the administrative boundaries) attribute table. Three fields is not cumbersome, but for very large tables this is a useful option. Here, **choose** to join the Country_Code and Pop_2010 fields. We need the latter to map population by country. We will use the former to quickly see the results of our join.
-
-When you are ready, **click** OK in the Add Vector Join dialogue box and return to the Layer Properties.
-
-![Join2]
-
-In the Layer Properties Joins panel, you should now see the details of the new join associated with the administrative boundary layer. **Click** OK to close the Layer Properties dialogue box.
-
-**Save** your map project.
-
-**Open** the admin_0_countries layer Attribute Table to see the results of your join.
-
-![Join3]
-
-**Notice** the two new fields appended to the end of our layer's original attribute table, based on shared values in the two country code fields. You should notice that features without a corresponding entry in the population table will have *NULL* values in the joined table (such as Antarctica in the screenshot above).
-
-**IMPORTANT NOTE**: Table joins are not permanent changes to a dataset. Instead, they are temporary associations made between datasets within the context of the specific map project. In other words, if you added the admin_0_countries layer to a new map project, it would not include the data from the population table. (Again, this is extremely uesful because we can associate several different types of data with such a layer.)
-
-### Exporting a new shapefile CHANGE THIS TO GEOJSON
-Because Table Joins are temporary, it is often useful to create a new shapefile (vector feature class) with the joined data permanently included in the layer. To do this, we will export a new shapefile from the results of the table join.
-
-To export a new feature layer from the admin_0_countries layer, **right-click** on the layer name in the Layers panel and click through Export > Save Features As... to open the Save Vector Layer as... dialogue box.
-
-![Export1]
-
-We will move through the options in the In the Save Vector Layer as... dialogue, from top to bottom.
-
-![Export2]
-
-**Format**: First, specify the output format as an ESRI Shapefile using the drop-down menu.
-
-**File name**: Navigate to the Tutorial1_ClassData folder (click the Browse `...` button) and create a new folder called "shape," where you can store the shapefile. Name the new file "admin_0_Pop2010."
-
-**CRS**: You have a few options for specifying the Coordinate Reference System of the new shapefile. By default, an exported shapefile will be assigned the same CRS as the layer from which it is being created. In the screenshot above, this option has been changed to match the Winkel Tripel CRS of the map project file.
-
-We will maintain the default options for the remainder of the dialogue box, but a few are worth mentioning. Maintain the default option to **Add the saved file to map** so we can use our results without needing to add the layer to our map project.
-
-![Export3]
-
-Under the **Select fields to export and their export options** you can choose to export only a subset of the fields included in the original layer (and any joined information). For our purposes, we will keep all options.
-
-Take a moment to expand the other options for your reference. When you are ready, **click OK** to export a new vector layer with the joined population data in the attribute table.
-
-**Note**: If prompted to confirm the CRS of the new layer, do so and click OK.
-
-When the new layer is added to your map project, **turn off** the previous admin_0_countries layer by unchecking it in the Layers panel. **Open** the Attribute Table of the new admin_0_Pop2010 layer to inspect its Attribute Table.
-
-![Export4]
-
-**Congratulations!** You should see the two joined fields from the population table now included in the attributes of the new vector feature layer.
-
-#### The Attribute Field Properties: Field Alias
-
-You probably also noticed an artifact of the join in the field headers of the last two fields in the new table. They are truncated versions of the population table's name, given the naming options chosen when we performed the table join and the ten-character limit on field headers in shapefile tables. Though we cannot change a field's name (without creating a new field and deleting the old), we can create an alias for these fields in order to make their contents more legible.
-
-(**Note**: In the future, you can avoid this step by specifying or removing the **Custom Field Name Prefix** in the Join options earlier. That said, it is very useful to know where to access your layers' Field Properties.)
-
-To create an alias for each field, we must access the layer's Attributes Form properties in its Layer Properties dialogue box.
-
-![FieldAlias]
-
-Once again, **open** the Layer Properties for the admin_0_Pop2010 layer by right-clicking on its name in the Layers panel. Reading the options from left to right:
-1. Access the Attributes Form panel,
-2. Select the TotalPop_1 Field from the Available Widgets options.
-3. In the General options section, specify "Pop2010" as the Alias for the TotalPop_1 field.
-4. Click Apply to save your changes.
-Repeat these steps for the "TotalPopul" field, assigning it the Alias "Country_Code."
-
-When you are finished, the new layer's attribute table should read cleanly.
-
-**Save** your map project.
-
-REMOVE SINCE THIS ALEEADY FOR DISXUSSED 
-### Intro to Quantitative Symbols
-We will further discuss quantitative map symbology (and classification) in a later tutorial. For now, let's make a map of this newly joined population data!
-
-We will create a *graduated color* map from the numeric values in the Pop2010 field of the admin_0_Pop2010 attribute table. A when a graduated color symbology system is applied to a contiguous polgyon layer, the resulting map is called a *choropleth*.
-
-**Access** the symbology options for graduated symbols (as we did for the other symbol options in the previous tutorial) in the admin_0_Pop2010 layer:
-1. Open the Layer Properties dialogue box.
-2. Access the Symbology panel.
-3. From the first option, choose a "Graduated" system.
-
-The options for graduated quantitative symbology are very similar to those of the categorical system we have seen before, save for color-assignment based on a range of numeric values within the attribute table instead of unique categories. We will read through the options and populate the dialogue box with our choices.
-
-![Choropleth1]
-
-**Column**: Select the field (column) in the attribute table containing the values you want to map. In our case, we want to map the population field, which is called "TotalPop_1."
-
-**Symbol**: The default symbol here assigns a simple fill to each feature based on the options we choose below. Maintain this default option.
-
-**Legend format**: The default option describes a range of values, depicted as integers. (The `%` symbol here is a coded placeholder for the appropriate values per range.) Maintain this default option.
-
-**Method**: The only available option here is "Color" because we chose a simple fill symbol above. (A variety of other options are available through a combination of manipulating both the Symbol and Method choices.) Maintain this default option.
-
-**Color Ramp**: You can use a preset, default color ramp or design your own by clicking the drop-down menu here. (Suggestion: Leave this decision for last.)
-
-Under the Classes and Histogram tabs, find the **Mode** drop-down options. We will discuss these options in detail later. For now, choose a Quantile classication method. Notice that there are five **Classes** specified (to the right of the dialogue box). Together, these options ensure that the color-coding of our features will group all the features (country polygons) into five *classes* according to their population values and each class will contain the same number of features (countries). In other words, we will organize the population data into *quintiles*, grouping the top 20% most populous countries together (then the next 20%, and so on).
-
-**Click Classify** to load your symbology settings into the dialogue. Click **Apply** to see your settings applied to the map's data frame.
-
-Explore the other symbology and rendering options. When you are ready to save your changes and return to your map project, **click OK**.
-
-![Choropleth2]
-
-**Save** your map project.
-
-### Creating a Map Layout
-
-When you are satisfied with your symbology choices and are ready to export a map document from QGIS, you will need to create a New Print Layout. To do this, either **click** the New Print Layout button on the Project Toolbar or **click through** Project > New Print Layout on the main menu.
-
-When prompted, you can choose to title your layout or let QGIS assign a default title for you.
-
-Take a moment to familiarize yourself with the Map Composer interface. You can **change** the page dimensions and orientation, for example, by clicking through Layout > Page Setup.
-
-To **add a map** from your project to the Composer, click the Add Map button or click through Add Item > Add Map from the main menu. (Both are highlighted in red in the screenshot below.) Notice also the other options one can add to a map composition.
-
-![Layout1]
-
-With the Add Map tool selected, click and draw a rectangle within the page to establish the frame of your map. The visible layers of your map project will be visible in the map you add to your Layout.
-
-Next, we will add a legend to the Layout. From the toolbar or the Add Item menu, **click Add Legend**. Again, draw a rectangle to specify the legend's location and approximate size.
-
-**Notice** the options in the Item Properties panel to the right of the Layout interface. Take a moment to scroll through the various options, including which layers to include in your legend as well as fonts and other graphic considerations.
-
-**Uncheck** the "Auto Update" option for the Legend's Item properties to unlock various editing opportunties. These include changing the layer's name to a more descriptive and meaningful phrase for your readers. (See the red highlights in the screenshot below.)
-
-![Layout2]
-
-**On Your Own:** Experiment and explore the layout options (remembering to Save along the way). **Add** a scale bar, sufficient descriptive text for a general audience, and a reference for your data source. **Specify** the various Item properties to control the map's layout. (The screenshot below is not intended as a final product, but as an indication of the fairly quick edits one can make with the Properties options.)
-
-![Layout3]
-
-Finally, you can **export** your layout as an Image, SVG, or PDF by either clicking through Layout > Export as... in the main menu or by clicking their corresponding buttons on the Layout Toolbar. (Alternatively, if you have experience with other graphic and illustration software, you can assempble the map elements within the layout and export for graphic editing in another software.)
-
-![Layout4]
-
-**Congratulations! You have a map!**
+It's important to note that when undertaking any spatial processing, including performing a spatial join, **all input layers are required to have the same projection**. Here the two input layers happen to be projected for youAn easy way to reproject a vector layer is to simply export it in a new projection. Right click the layer, choose Export > Save Features As... and choose the needed projection in the Save prompt. You can also use this feature to save subsets of data based on a selection if you check the "Save selected features only box.
 
 When you are finished, **Save** your Layout and Map project.
+
+## Exporting Your Map from the Print Layout
+
+When you are satisfied with your symbology choices and are ready to export a map document from QGIS, you will need to create a New Print Layout. You can use the "New Print Layout" button on the Project Toolbar (to the right of "Save As") or the Menu Bar via Project > New Print Layout. Enter a title for your layout and click OK.
+
+In QGIS, the Print Layout functionality is contained within a separate window from the main interface. Like the main window, you'll notice a Menu Bar, Status Bar, some Toolbars and Panels (on the right instead of the left). The biggest difference is that the Map View has been replaced by the **Layout View**, which is where you'll compose your different layout elements to create your finished map.
+
+Here you can also use Tooltips to learn more about elements of the interface.
+
+Use the "Add Map" button or Add Item > Add Map on the Menu Bar to add a map view to your layout. With the tool selected, click and drag over the part of the layout where you want the map to appear. Notice that the appearance of the map, including layer visibility and symbology options, have the same appearance as in the Map View in the main window.
+
+Try using the Pan Layout tool and the Zoom tools on the toolbar. You'll notice that in the Print Layout, these control the view of the layout itself, rather than the map view you've just created. To manipulate the contents of the map view, you'll need to use the "Move Item Content" tool or the Item Properties panel tab when the view is selected. Try using the panel to change the scale and rotation of your map view.
+
+Next, use the Add Legend button (or menu item) to create a Legend. Again, click and drag on the layout to set the item's placement. Notice the layout guides that automatically appear to help align the new item with existing elements on the page.
+
+![table join visualized](./assets/qgis_layout.png)
+
+Once the layout is created, make sure it's selected and open the Item Properties tab panel. Here you can apply a title, change which map view the legend applies to, and control the display and order of the map layers listed. Under Legend Items, note that unchecking the "Auto update" box will allow you to control the layer names and visibility independently of what's shown in the Layer Panel in the main window. This is useful if you want to hide layers in the legend or rename them without changing the underlying data.
+
+Experiment with and explore other layout options and elements – just remember to save often! Try adding a scale bar, an image, or descriptive text. Using the Layout, Item Properties and Guides panel tabs, explore other ways you can adjust and manipulate your layout and each of the different elements.
+
+When you're satisfied, you can **export** your layout as an Image, SVG, or PDF by using Layout > Export as \(Type\) from the Menu Bar or by the corresponding buttons on the Layout Toolbar. If you often work in other graphic software like Illustrator or Photoshop, consider how you might use the Print Layout to export separate layers or elements to edit and compose elsewhere.
 
 **Deliverable: Save your map layout as a PDF and upload it to the Deliverables folder**
 
