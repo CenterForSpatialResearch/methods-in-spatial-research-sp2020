@@ -85,11 +85,11 @@ Due: [Tutorial 2](./tutorials/02_working-with-cartographic-projections)
 
 Morris, Dee, and Stephen Voyce. “Embodied Mapping, Locative Mapping, and New Media Poetics.” Jacket2, March 20, 2015. ([link](https://jacket2.org/commentary/embodied-mapping-locative-mapping-and-new-media-poetics))
 
-Pavlovskaya, Marianna. “Non-Quantitative GIS.” In Qualitative GIS: A Mixed Methods Approach, 13–38. London: SAGE Publications Ltd, 2009. [link](https://doi.org/10.4135/9780857024541)
+Pavlovskaya, Marianna. “Non-Quantitative GIS.” In Qualitative GIS: A Mixed Methods Approach, 13–38. London: SAGE Publications Ltd, 2009.
 
 ### Week 4: Cartographic Design Principles: The Map as Drawing
 
-Due: [Tutorial 3]() 
+Due: [Tutorial 3](./tutorials/03_making-spatial-datasets-observation-sensing.md)
 
 Monmonier, Mark. How to Lie with Maps, Third Edition. 3 edition. Chicago ; London: University of Chicago Press, 2018.
 

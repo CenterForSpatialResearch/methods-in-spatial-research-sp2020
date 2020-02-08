@@ -1,6 +1,6 @@
 ---
 title: Tutorial 3
-publish: false
+publish: true
 ---
 
 While a huge amount of spatial data is now freely available in digital form, it tends to focus on the present and excludes many of the subjects we may want to take on as mapmakers and researchers. To broaden the reach of what we're able to incorporate in our mappings, we'll often need to turn to archives and in-person field work to collect the necessary information.
