@@ -97,9 +97,9 @@ Desimini, Jill;, and Charles Waldheim. Cartographic Grounds: Projecting the Land
 
 ### Week 5: The Networked Map
 
-Due: [Tutorial 4]()
+Due: [Tutorial 4](./tutorials/04_creating-web-maps.md)
 
-Reading TBD
+Metahaven. White Night before a Manifesto. Eindhoven: Onomatopee, 2008.
 
 ### Week 6: Making Things Public: Designing for the Interactive Web
 

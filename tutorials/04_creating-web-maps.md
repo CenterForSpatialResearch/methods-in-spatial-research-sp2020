@@ -12,7 +12,7 @@ To publish the web map you will create in this tutorial we will use [GitHub](htt
 Using GitHub will allow us to easily host our web maps online, however it requires a bit of set up.
 
 At this stage, you should:
-1. create a [GitHub](https://github.com) account
+1. create a [GitHub](https://github.com) account if you don't already have one
 2. create a new repository on GitHub
     - from the **Your Profile** page in your newly created github account select **Repositories**
     - select the green **New** button in the top right of the page
@@ -27,18 +27,20 @@ At this stage, you should:
 
 4. install [Git](https://git-scm.com/downloads).
     - download and install the git version for your operating system. Follow the instructions of the installer.
+    - Note that if you're using a Mac, this will just install the Git command-line program, which you can access through the Terminal app. On Windows, you'll get the command-line Git plus a new Terminal-like app called Git Bash.
 
 5. use Git in the Terminal or Git Bash to clone the repository you created on github.
     - **On Mac** open your terminal (Applications > Utilities > Terminal.app); **on PC** open Git Bash (Programs > Git > Git Bash, or search for it in the start menu).
     - and learned how to [navigate](https://www.macworld.com/article/2042378/master-the-command-line-navigating-files-and-folders.html);
     - navigate to the folder where you would like to create your web map.
     - set up git, type the following in your terminal/git bash:  
-      `git config --global user.name 'My Name'`  
+      `git config --global user.name 'Your Name'`  
       `git config --global user.email 'email@wherever.com'` (this email should match the one you used to set up Github)
     - cloned a local copy of your repository to your computer using git.
         - by typing: `git clone https://github.com/yourusername/webmap_1`
 
-#### Create empty files that will become your web map and `commit` your first changes, and `push` them to GitHub.  
+#### Create empty files that will become your web map and `commit` your first changes, and `push` them to GitHub
+
 6. open your text editor ([VS Code](https://code.visualstudio.com/) is a good one) and create three empty files titled `index.html`, `style.css`, and `map.js`. **Save** them in your `webmap_1` folder. Your `webmap_1` folder should look like this:  
 
 ![initial folder][FOLDER]
@@ -52,7 +54,6 @@ At this stage, you should:
 9. view the result on your online github repository (the url should be `github.com/yourusername/webmap_1`) github page (the url should be `yourgithubusername.github.io/webmap_1` but you can also find this in the settings of the repository you created on github). You should see something like this:  
 
 ![initial webpage][WEB]
-
 
 ## A web page
 
