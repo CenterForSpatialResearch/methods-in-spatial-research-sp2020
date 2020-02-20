@@ -101,6 +101,8 @@ Due: [Tutorial 4](./tutorials/04_creating-web-maps.md)
 
 Metahaven. White Night before a Manifesto. Eindhoven: Onomatopee, 2008.
 
+Shannon Mattern, “Post-It Note City,” Places Journal, February 2020. Accessed 20 Feb 2020. [link](https://placesjournal.org/article/post-it-note-city/)
+
 ### Week 6: Making Things Public: Designing for the Interactive Web
 
 Due: [Tutorial 5]()
