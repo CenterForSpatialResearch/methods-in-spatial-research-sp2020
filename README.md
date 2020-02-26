@@ -105,8 +105,8 @@ Shannon Mattern, “Post-It Note City,” Places Journal, February 2020. Accesse
 
 ### Week 6: Making Things Public: Designing for the Interactive Web
 
-Due: [Tutorial 5]()
+Due: [Tutorial 5](./tutorials/05_next-steps.md)
 
-Tentative: In-class presentations of project work in progress.  
+In-class workshop/discussion of work-in-progress maps.  
 
 Project due on Tuesday following.  
