@@ -138,5 +138,4 @@ The rest of this page provides a kind of partially-annotated bibliography of map
 - [European Urban Cartography](https://www.arch.columbia.edu/courses/11355-2746) (GSAPP)
 
 ---
-
-There's no **deliverable** for this tutorial - just come to class Friday ready to talk about what you've been working on and have a discussion with the group about what you'd like to pursue next!
+Tutorial by Carsten Rodin, Spring 2020.
